@@ -1,7 +1,4 @@
 <?php
-
-
-
 if (isset($_SESSION)) {
   session_destroy();
 }
@@ -16,16 +13,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   //$consulta="select usuario,password,privilegio from usuarios where usuario='$us' and password='$ps'";
 
-  $consulta = "select nombre,password,privilegio from usuarios where nombre='$us' and password='$ps'";
-  $resultado = $con->query($consulta);
+  $consulta = "select usuario,password,privilegio from usuarios where usuario='$us' and password='$ps'";
+  $resultado = $conexion->query($consulta);
 
-  if ($resultado->num_rows > 0) {
+  if ($resultado) {
     while ($fila = $resultado->fetch_assoc()) {
       $priv = $fila['privilegio'];
 
 
       session_start();
-      $_SESSION['nombre'] = $us;
+      $_SESSION['usuario'] = $us;
       $_SESSION['password'] = $ps;
       $_SESSION['privilegio'] = $priv;
 
@@ -65,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body class="login">
   <div class="login-container-up">
-  <button  class="btn" style="position:absolute;top:0;right:0;padding: .5rem; margin:.7rem;" type="button" data-dismiss="modal">
+  <button  class="btn" style="position:absolute;top:0;right:0;padding: .5rem; margin:.7rem;" type="button" data-dismiss="modal" id="loginClose">
   <i class="fa-solid fa-xmark fa-lg text-white"></i>
 </button>
     <h2>¡BIENVENIDO!</h2>
@@ -95,7 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="register">
-      <p>¿Aún no tienes cuenta? <button id="btnAbrirModal2">Regístrate</button></p>
+      <p>¿Aún no tienes cuenta? <button id="registerBtn" class="btn btn-success justify-content-center align-items-center d-flex" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Registrarse</button></p>
+
     </div>
   </div>
 

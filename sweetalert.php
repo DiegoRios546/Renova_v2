@@ -1,39 +1,39 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.22/dist/sweetalert2.all.min.js"></script>
 
 <?php if ($entrar=="registro"){ ?>
-    <script>
+<script>
     function mensaje(){
         Swal.fire({
   position: 'center',
   icon: 'success',
-  title: 'Registro insertado !',
+  title: 'Registrado con exito',
   showConfirmButton: false,
-  timer: 1500
+  timer: 2000
 }).then(function(){
-    location.href='login.php';
+    location.href='index.php';
 });
     }
     mensaje();
 </script>
-<?php }if ($entrar=="error_registro"){ ?>
-    <script>
+
+<?php } if ($entrar=="error_registro"){ ?>
+<script>
     function mensaje(){
         Swal.fire({
   position: 'center',
   icon: 'error',
-  title: 'ERROR! Registro NO insertado',
+  title: 'Error al registrar',
   showConfirmButton: false,
-  timer: 1500
+  timer: 2000
 }).then(function(){
-    location.href='login.php';
+    location.href='index.php';
 });
     }
     mensaje();
 </script>
-<?php }?>
 
 
-<?php if ($entrar=="actualizar"){ ?>
+<?php }if ($entrar=="actualizar"){ ?>
     <script>
     function mensaje(){
         Swal.fire({
@@ -122,7 +122,7 @@
         Swal.fire({
   position: 'center',
   icon: 'success',
-  title: 'B I E N V E N I D O al sistema <?php  echo $_SESSION['usuario']?>!',
+  title: 'B I E N V E N I D O al sistema estandar <?php  echo $_SESSION['usuario']?>!',
   showConfirmButton: false,
   timer: 2000
 }).then(function(){

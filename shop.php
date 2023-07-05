@@ -11,7 +11,6 @@
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/estilos.css">
-
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
@@ -31,6 +30,14 @@
 <!-- boton flotante del carrito -->
 
 <button href="#" class="btn-shop bg-success p-3 border" id="btnCarrito"><i class="fa fa-fw fa-cart-arrow-down text-white m-auto"></i> Carrito <span class="badge bg-success border" id="carrito">0</span></button>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Library</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>
 
     <!-- Start Content -->
     <div class="container py-5">
@@ -87,7 +94,7 @@ document.getElementById("boton").addEventListener("click", function() {
                     </div>
                 </div>
             
-        <div class="row ">
+
 
 
     
@@ -96,18 +103,19 @@ document.getElementById("boton").addEventListener("click", function() {
                 //$query = mysqli_query($conexion, "SELECT p.*, c.id AS id_cat, c.categoria FROM productos p INNER JOIN categorias c ON c.id = p.id_categoria");
                 $query = mysqli_query($conexion, "SELECT t1.*, t2.imagen
                 FROM productos AS t1
-                JOIN imagenes AS t2 ON t1.id_imagen = t2.id");
+                JOIN imagenes AS t2 ON t1.id = t2.id_producto");
                 $resultado = mysqli_num_rows($query);
                 if ($resultado > 0) {
                     while ($data = mysqli_fetch_assoc($query)) { 
                          // Mostrar los registros en una tabla
                         ?>
-
+    <div class="row ">
         <div class="col-md-4 ">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
                                 <!-- Product image-->
                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
+                               <span class="badge bg-red">OFERTA</span>
                                <!--
                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-end justify-content-end">
                                     <ul class="list-unstyled">
@@ -143,14 +151,14 @@ document.getElementById("boton").addEventListener("click", function() {
                                     </div>
                             </div>
                         </div>
-                    </div>
+            
                     <?php  }
                 } 
               ?>
         </div>
     </div>
               
-                    <ul class="pagination pagination-lg justify-content-center mt-5">
+                    <ul class="pagination justify-content-center mt-5">
 
         <li class="page-item">
         <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
@@ -167,6 +175,7 @@ document.getElementById("boton").addEventListener("click", function() {
 
      <?php
    include_once("footer.php");
+include_once("sweetalert.php");
 ?>
 
     <!-- Start Script -->

@@ -11,7 +11,6 @@
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/estilos.css">
-
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
@@ -126,8 +125,64 @@ https://templatemo.com/tm-559-zay-shop
   width:90%;
 }
 </style>
+<?php
+  include_once("conexion.php");
+                //$query = mysqli_query($conexion, "SELECT p.*, c.id AS id_cat, c.categoria FROM productos p INNER JOIN categorias c ON c.id = p.id_categoria");
+                $query = mysqli_query($conexion, "SELECT t1.*, t2.imagen
+                FROM productos AS t1
+                JOIN imagenes AS t2 ON t1.id = t2.id_producto");
+                $resultado = mysqli_num_rows($query);
+                if ($resultado > 0) {
+                    while ($data = mysqli_fetch_assoc($query)) { 
+                         // Mostrar los registros en una tabla
+                        ?>
 <h2 class="p-2 m-1 linea ">Las mejores promociones</h2>
+<div class="row ">
+        <div class="col-md-4 ">
+                        <div class="card mb-4 product-wap rounded-0">
+                            <div class="card rounded-0">
+                                <!-- Product image-->
+                               <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
+                               <!--
+                               <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-end justify-content-end">
+                                    <ul class="list-unstyled">
+                                        <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2 agregar" data-id="" href="#"><i class="fas fa-cart-plus"></i></a></li>
+                                    </ul>
+                                </div>-->
+                            </div>
+                            <div class="card-body m-2">
+                                        <!-- Product name-->
+                                        <h3 class="fw-bolder"><?php echo $data['nombre'] ?></h2>
+                                        <h5 class="d-none d-sm-block"><?php echo $data['descripcion']; ?></h5>
 
+                                <div class="rating m-1">
+                                    <span class="star" data-value="1">&#9733;</span>
+                                    <span class="star" data-value="2">&#9733;</span>
+                                    <span class="star" data-value="3">&#9733;</span>
+                                    <span class="star" data-value="4">&#9733;</span>
+                                    <span class="star" data-value="5">&#9733;</span>
+                                </div>
+                                    <div class="d-flex">
+                                        <div>
+                                        <!-- Product price-->
+                                         <h6 class="m-1">Antes:<span class="m-1 text-decoration-line-through text-dark">$<?php echo $data['precio-regu'] ?></span></h6>
+                                         <h6 class="m-1">$<?php echo $data['precio-desc'] ?></h6>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer border-top-0 bg-transparent carrito" >
+                                            <a class="btn p-1 bg-success " data-id="<?php echo $data['id']; ?>" href="#">
+                                             <i class="fa fa-lg fa-cart-plus text-white m-2"></i></a>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+            
+                    <?php  }
+                } 
+              ?>
+        </div>
 
 
 
@@ -259,6 +314,7 @@ https://templatemo.com/tm-559-zay-shop
 
     <?php
    include_once("footer.php");
+   include_once("sweetalert.php");
 ?>
 
     <!-- Start Script -->

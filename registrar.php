@@ -1,11 +1,11 @@
 <?php
 
-
-
-if (isset($_SESSION)) {
-  session_destroy();
+if (isset($_SESSION))
+{
+    session_destroy();
 }
 $entrar = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   //variables del formulario
@@ -16,32 +16,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   //$consulta="select usuario,password,privilegio from usuarios where usuario='$us' and password='$ps'";
 
-  $consulta = "select nombre,password,privilegio from usuarios where nombre='$us' and password='$ps'";
-  $resultado = $con->query($consulta);
-
-  if ($resultado->num_rows > 0) {
-    while ($fila = $resultado->fetch_assoc()) {
-      $priv = $fila['privilegio'];
-
-
-      session_start();
-      $_SESSION['nombre'] = $us;
-      $_SESSION['password'] = $ps;
-      $_SESSION['privilegio'] = $priv;
-
-      //Entre al menu de opciones 
-
-      if ($priv == "admin") {
-        $entrar = "admin";
-
-      }
-    }
-    if ($priv == "estandar") {
-      $entrar = "estandar";
-    }
-  } else {
-    $entrar = "error1";
+  $consulta = "INSERT INTO USUARIOS VALUES (null,'$us','$ps',null,'estandar');";
+  $resultado=$conexion->query($consulta);
+  if ($consulta) {
+    
+    if($resultado){
+      $entrar = "registro";
+    }else {
+    $entrar = "error_registro";
   }
+}else {
+  $entrar = "error1";
+}
 }
 ?>
 
@@ -63,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body class="login">
   <div class="login-container-up">
-  <button  class="btn" style="position:absolute;top:0;right:0;padding: .5rem; margin:.7rem;" type="button" data-dismiss="modal">
+  <button  class="btn" style="position:absolute;top:0;right:0;padding: .5rem; margin:.7rem;" type="button" data-dismiss="modal" id="registerClose">
   <i class="fa-solid fa-xmark fa-lg text-white"></i>
 </button>
     <h2>¡REGÍSTRATE!</h2>
@@ -72,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <div class="login-container">
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
       <div class="input-wrapper">
         <input type="email" class="input" id="email" placeholder="Correo electrónico" name="nombre" required />
         <i class="fa-solid fa-user fa-sm icon-usr" style="color: #fd5100;"></i>
@@ -90,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="register">
-      <p>¿Ya tienes cuenta? <button id="btnRegresarModal1">Inicia sesión</button></p>
+      <p>¿Ya tienes cuenta? <button class="btn btn-success justify-content-center align-items-center d-flex" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Inicia sesion</button> </p>
     </div>
   </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
