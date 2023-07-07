@@ -114,6 +114,7 @@ body, ul, li, a, p, label, input, div {
   .brand-img:hover {
     filter: grayscale(0%);
     opacity: 1;
+    transform: scale(1.2);
   }
   /* Carousel Hero */
   #template-mo-zay-hero-carousel .carousel-indicators li {

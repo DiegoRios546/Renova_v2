@@ -96,19 +96,19 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="mx-auto m-1">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/diseño.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/diseño.png" alt="Diseños"></a>
                                                 <h6 class="icono mt-1">Diseños</h6>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/servicios.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/servicios.png" alt="Servicios"></a>
                                                 <h6 class="icono mt-2">Servicios</h6>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/ladrillo.png" alt="Brand Logo"></a>
-                                                <h6 class="icono mt-2">Eco-ladrillo</h6>
+                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/ladrillos.png" alt="Eco-Ladrillos"></a>
+                                                <h6 class="icono mt-1">Eco-ladrillo</h6>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/inmobiliaria.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/inmobiliaria.png" alt="Inmobiliaria"></a>
                                                 <h6 class="icono mt-1">Inmobiliaria</h6>
                                             </div>
                                         </div>
@@ -125,35 +125,6 @@ https://templatemo.com/tm-559-zay-shop
             <div class="m-auto">
                 <h1 class="h1">Renova Depot te ofrece:</h1>
             </div>
-        </div>
-        <div class="row mt-5">
-            <div class="mx-auto m-auto d-flex align-items-center justify-content-center">
-            <div class="col-md-2 p-2 m-3" > <!-- Agregar con media el responsive-->
-                <a href="#"><img src="assets/img/diseño.png" class="rounded-circle img-fluid border"></a>
-                <h5 class="text-center mt-3 mb-3">Diseños</h5>
-                <h4 class="text-center">Diseños adaptados a tus necesidades</h4>
-                <p class="text-center mt-3"><a class="btn btn-success1 text-white">Ver mas ></a></p>
-            </div>
-            <div class="col-md-2 p-2 m-3">
-                <a href="#"><img src="assets/img/servicios.png" class="rounded-circle img-fluid border "></a>
-                <h5 class="text-center mt-3 mb-3">Servicios</h5>
-                <h4 class="text-center">Los mejores servicios que puede contratar</h4>
-                <p class="text-center mt-3"><a class="btn btn-success1 text-white">Ver mas ></a></p>
-            </div>
-            <div class="col-md-2 p-2 m-3">
-                <a href="#"><img src="assets/img/ladrillo.png" class="rounded-circle img-fluid border"></a>
-                <h5 class="text-center mt-3 mb-3">Eco-ladrillo</h5>
-                <h4 class="text-center">El mejor ladrillo ecologico del mercado</h4>
-                <p class="text-center mt-3"><a class="btn btn-success1 text-white">Ver mas ></a></p>
-            </div>
-            <div class=" col-md-2 p-2 m-3">
-                <a href="#"><img src="assets/img/inmobiliaria.png" class="rounded-circle img-fluid border"></a>
-                <h5 class="text-center mt-3 mb-3">Inmobiliaria</h5>
-                <h4 class="text-center">Nuevas cabañas hechas de contenedores metalicos</h4>
-                <p class="text-center mt-3"><a class="btn btn-success1 text-white">Ver mas ></a></p>
-            </div>
-            </div>
-
         </div>
     </section>
     <!-- End Categories of The Month -->
