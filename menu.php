@@ -4,7 +4,7 @@
     <nav class="navbar shadow menu d-block text-white">
         <div class="container mx-auto d-flex p-0 m-auto">
             <div class="d-flex">
-                <a class="navbar-brand p-2" href="index.php">
+                <a class="navbar-brand" href="index.php">
 
                     <img src="assets/img/logo.png" alt="logo" class="logo ">
                 </a>
@@ -20,6 +20,20 @@
             </button>
 
             <!-- barrra de buscador -->
+            <style>
+@media (max-width: 600px) {
+  .carrito{
+    margin-left: 40%;
+  }
+  .btn-search{
+    width: 60%; 
+  }
+  .descuento{
+    height: 200px;
+  }
+
+}
+            </style>
                 <div class="btn-search m-auto">
                     <div class="input-group" id="contenedor-search">
                             <input type="text" class="form-control" id="inputsearch" placeholder="¿Qué estás buscando?">
@@ -29,7 +43,7 @@
                     </div>
                 </div>
                  <!-- iconos -->
-                 <div class="mx-auto m-auto d-flex">
+                 <div class="d-flex">
                     <a class="nav-icon position-relative text-decoration-none  m-auto" href="#">
                         <i class="fa fa-fw fa-cart-arrow-down text-white m-2"></i>
                         <span class="position-absolute top-0  translate-middle badge">7</span>
@@ -42,7 +56,7 @@
                     </button> 
                     </a>
                 </div>
-
+</div>
 <div class="btn-group" role="group" aria-label="Basic example">
 <div class="dropdown">
   <button class="btn opciones text-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -76,7 +90,7 @@
 </div>
 </div>
 
-                    </div>
+                    
     </nav>
     <!-- fin de barra del menu -->
 

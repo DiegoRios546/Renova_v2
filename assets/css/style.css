@@ -163,9 +163,6 @@ body, ul, li, a, p, label, input, div {
   
   @media (min-width: 576px) {
     .tempaltemo-carousel .h1 { font-size: 1em !important;}
-    .btn-search{
-      width: 50%; margin:auto;
-    }
 
   }
   /*// Medium devices (tablets, 768px and up)*/
@@ -183,6 +180,7 @@ body, ul, li, a, p, label, input, div {
       width: 12px;
       height: 12px;
     }
+
     .carrito{
       margin-left: 30%;
     }
@@ -193,19 +191,7 @@ body, ul, li, a, p, label, input, div {
   }
   
   /* Extra large devices (large desktops, 1200px and up)*/
-@media (max-width: 600px) {
-  .carrito{
-    margin-left: 40%;
-  }
-  .btn-search{
-     margin:auto;
-     width:65%;
-  }
-  .descuento{
-    height: 200px;
-  }
 
-}
 
 
 .linea{
@@ -230,10 +216,12 @@ body, ul, li, a, p, label, input, div {
     z-index: -1;
   }
   .logo{
-    width: 4rem;
+    width: 3rem;
   }
 
-
+  .btn-search{
+    width: 45%; 
+  }
 .text-muted{
   font-size: medium;
 }
