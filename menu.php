@@ -1,11 +1,12 @@
-<link rel="stylesheet" href="assets/css/estilos.css">
+<link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/fontawesome.min.css">
 <!-- barra de menu -->
     <nav class="navbar shadow menu d-block text-white">
         <div class="container mx-auto d-flex p-0 m-auto">
             <div class="d-flex">
-                <a class="navbar-brand" href="index.php">
-                    <img src="assets/img/logo2.png" alt="logo" class="logo navbar-brand ">
+                <a class="navbar-brand p-2" href="index.php">
+
+                    <img src="assets/img/logo.png" alt="logo" class="logo ">
                 </a>
                 <a href="" class="text-decoration-none text-white">
                     <h6 class="m-0" ><i class="fa fa-fw fa-solid fa-map-pin text-white"></i>
@@ -84,7 +85,7 @@
  <!-- Ventana modal de inicio de sesión -->
  <div id="loginModal" class="modal fade" tabindex="2" role="dialog" aria-labelledby="tituloVentana" aria-hidden="false">
     <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content p-0">
       
       <?php 
                             include_once("login.php");
@@ -99,7 +100,7 @@
   <!-- Ventana modal de registro -->
   <div id="registerModal" class="modal fade" tabindex="4" role="dialog" aria-labelledby="tituloVentana" aria-hidden="false">
     <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content p-0">
 
       <?php 
                             include_once("registrar.php");

@@ -10,7 +10,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/estilos.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
@@ -28,7 +28,6 @@
 
 ?>
 <!-- boton flotante del carrito -->
-
 <button href="#" class="btn-shop bg-success p-3 border" id="btnCarrito"><i class="fa fa-fw fa-cart-arrow-down text-white m-auto"></i> Carrito <span class="badge bg-success border" id="carrito">0</span></button>
 
 <nav aria-label="breadcrumb">
@@ -80,7 +79,7 @@ document.getElementById("boton").addEventListener("click", function() {
 
             </script>
 
-            <div class="col-md-9 row mx-auto m-1">
+<div class="col-md-9 row mx-auto m-1">
                 <div class="mx-auto d-flex text-dark m-2 align-items-center justify-content-center">
                     <p>Productos: (  1 - 20 de 583  )</p>   
                     <div class=" d-flex  mx-auto">
@@ -93,70 +92,64 @@ document.getElementById("boton").addEventListener("click", function() {
                         </select>
                     </div>
                 </div>
-            
-
-
-
     
-
-             <?php
-                //$query = mysqli_query($conexion, "SELECT p.*, c.id AS id_cat, c.categoria FROM productos p INNER JOIN categorias c ON c.id = p.id_categoria");
-                $query = mysqli_query($conexion, "SELECT t1.*, t2.imagen
-                FROM productos AS t1
-                JOIN imagenes AS t2 ON t1.id = t2.id_producto");
+                <div class="row">
+<?php
+  include_once("conexion.php");
+                $query = mysqli_query($conexion, "SELECT * FROM productos");
+                //$query = mysqli_query($conexion, "SELECT t1.*, t2.imagen
+                //FROM productos AS t1
+                //JOIN imagenes AS t2 ON t1.id = t2.id_producto");
                 $resultado = mysqli_num_rows($query);
                 if ($resultado > 0) {
                     while ($data = mysqli_fetch_assoc($query)) { 
                          // Mostrar los registros en una tabla
                         ?>
-    <div class="row ">
-        <div class="col-md-4 ">
+                    <div class="col-md-4">
+
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <!-- Product image-->
-                               <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
-                               <span class="badge bg-red">OFERTA</span>
-                               <!--
-                               <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-end justify-content-end">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.php"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.php"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2 agregar" data-id="" href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>-->
+                            <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
+                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                </div>
                             </div>
-                            <div class="card-body m-2">
+                            <div class="card-body">
                                         <!-- Product name-->
                                         <h3 class="fw-bolder"><?php echo $data['nombre'] ?></h2>
                                         <h5 class="d-none d-sm-block"><?php echo $data['descripcion']; ?></h5>
 
-                                <div class="rating m-1">
+                                <div class="rating d-flex align-items-center">
                                     <span class="star" data-value="1">&#9733;</span>
                                     <span class="star" data-value="2">&#9733;</span>
                                     <span class="star" data-value="3">&#9733;</span>
                                     <span class="star" data-value="4">&#9733;</span>
                                     <span class="star" data-value="5">&#9733;</span>
+                                    <p class="m-2">4.8  (17)</p>
                                 </div>
-                                    <div class="d-flex">
+                                <h4>id:14578</h4>
+                                                                        <!-- Product price-->
+                                <div class="d-flex">
                                         <div>
-                                        <!-- Product price-->
-                                         <h6 class="m-1">Antes:<span class="m-1 text-decoration-line-through text-dark">$<?php echo $data['precio-regu'] ?></span></h6>
-                                         <h6 class="m-1">$<?php echo $data['precio-desc'] ?></h6>
+                                         <h5 class="">Antes:<span class="text-decoration-line-through text-dark">$<?php echo $data['precio-regu'] ?></span></h5>
+                                         <h2 class="">$<?php echo $data['precio-desc'] ?></h2>
+                                         <h4 class="text-success">Ahorras: $100.00</h4>
                                         </div>
-                                        <!-- Product actions-->
-                                        <div class="card-footer border-top-0 bg-transparent carrito" >
-                                            <a class="btn p-1 bg-success " data-id="<?php echo $data['id']; ?>" href="#">
-                                             <i class="fa fa-lg fa-cart-plus text-white m-2"></i></a>
+                                                                                <!-- Product actions-->
+                                        <div class=" border-top-0 bg-transparent carrito" >
+                                            <button class="btn p-2 btn-success1 " data-id="<?php echo $data['id']; ?>" href="#">
+                                             <i class="fa fa-lg fa-cart-plus text-white p-2"></i></button>
                                         </div>
-                                    </div>
+                                </div>
                             </div>
+
                         </div>
-            
+
+                    </div>
                     <?php  }
                 } 
               ?>
-        </div>
     </div>
+
               
                     <ul class="pagination justify-content-center mt-5">
 

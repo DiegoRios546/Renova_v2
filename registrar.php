@@ -75,8 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <button class="icono-boton"><i class="fa-brands fa-google fa-2xl" style="color: #1d2f4e"></i></button>
     </div>
 
-    <div class="register">
-      <p>¿Ya tienes cuenta? <button class="btn btn-success justify-content-center align-items-center d-flex" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Inicia sesion</button> </p>
+    <div class="register d-flex align-items-center justify-content-center">
+      <p>¿Ya tienes cuenta? <button class="btn btn-success1 justify-content-center align-items-center" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Inicia sesion</button> </p>
     </div>
   </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

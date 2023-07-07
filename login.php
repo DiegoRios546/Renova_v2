@@ -91,8 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <button class="icono-boton"><i class="fa-brands fa-google fa-2xl"></i></button>
     </div>
 
-    <div class="register">
-      <p>¿Aún no tienes cuenta? <button id="registerBtn" class="btn btn-success justify-content-center align-items-center d-flex" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Registrarse</button></p>
+    <div class="register d-flex align-items-center justify-content-center">
+      <p>¿Aún no tienes cuenta? <button id="registerBtn" class="btn btn-success1 justify-content-center align-items-center" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Registrarse</button></p>
 
     </div>
   </div>
