@@ -1,6 +1,5 @@
-
 <?php
-   //definir la variables de conexion
+   //variables de conexion a la base de datos
    
    $host = "localhost";
    $user = "root";
@@ -9,6 +8,5 @@
 
    //Crear conexion
    $conexion = new mysqli($host, $user, $clave, $bd);
-
 
     ?>

@@ -1,14 +1,19 @@
 
 
 <style>
-        img.btn-whatsapp {
-        display: block !important;
+        #whatsapp {
+        display: flex !important;
         position: fixed;
         z-index: 9999999;
         bottom: 20px;
         left: 20px;
         cursor: pointer;
         border-radius:100px !important;
+        }
+        #whatsapp p{
+            border-radius:50px;
+            cursor: pointer;
+            background-color: beige;
         }
         img.btn-whatsapp:hover{
         border-radius:100px !important;
@@ -18,5 +23,8 @@
         transition-duration: 1s;
         } 
         </style>
-    <img class="btn-whatsapp" src="https://clientes.dongee.com/whatsapp.png" width="64" height="64" alt="Whatsapp" onclick="window.location.href='https://wa.me/573001112233?text=Hola!%20Estoy%20interesado%20en%20tu%20servicio'">
+        <div id="whatsapp" class="">
+            <a class="btn-whatsapp  justify-content-center" href="https://api.whatsapp.com/send?phone=526181461515&text=Hola, Nececito mas informacion!" target="_blanck"> <img class="btn-whatsapp"  src="https://clientes.dongee.com/whatsapp.png" width="64" height="64" alt="Whatsapp"></a><p class="text-whats">Envíanos un mensaje de WhatsApp</p>
+        </div>
+    
     

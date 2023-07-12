@@ -1,5 +1,5 @@
 .menu{
-    background-color: #fd5100; position: sticky; top: 0; z-index: 1;
+    background-color: #fd5100; position: sticky; top: 0; z-index: 1; width:100%;
   }
 .linea{
   border-bottom: 5px solid #fd5100;
@@ -44,7 +44,7 @@ body, ul, li, a, p, label, input, div {
 .logo { font-weight: 500 !important;}
 .text-warning {  color: #ede861 !important;}
 .text-muted { color: #1177BB!important;}
-.text-success { color: #28a745;}
+.text-success1 { color: #28a745;}
 .text-light { color: #1177BB !important;}
 .bg-dark { background-color: #d4d3d3 !important;}
 .bg-red { background-color: #ff0000 !important;}
@@ -77,7 +77,9 @@ body, ul, li, a, p, label, input, div {
 /* Shop */
 .shop-top-menu a:hover { color: #212934 !important;}
 /* Product */
-.product-wap { box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10);  }
+.product-wap { box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10);  
+margin-right: 1rem;
+}
 .product-wap .product-color-dot.color-dot-red { background:#f71515;}
 .product-wap .product-color-dot.color-dot-blue { background:#6db4fe;}
 .product-wap .product-color-dot.color-dot-black { background:#000000;}
@@ -131,6 +133,10 @@ body, ul, li, a, p, label, input, div {
     color: #000 !important;
   }
   /* Footer */
+#footer{
+  background-color: #f5f5f5;
+  color: #1177BB;
+}
 #footer a { color: #1177BB;}
 #footer a:hover { color: #fd5100;}
 #footer ul.footer-link-list li { padding-top: 10px;}
@@ -164,7 +170,7 @@ body, ul, li, a, p, label, input, div {
   @media (min-width: 576px) {
     .tempaltemo-carousel .h1 { font-size: 1em !important;}
     .btn-search{
-      width: 50%; margin:auto;
+      width: 50%;
     }
 
   }
@@ -207,7 +213,6 @@ body, ul, li, a, p, label, input, div {
 
 }
 
-
 .linea{
     border-bottom: 5px solid #fd5100;
     width:90%;
@@ -230,7 +235,7 @@ body, ul, li, a, p, label, input, div {
     z-index: -1;
   }
   .logo{
-    width: 4rem;
+    width: 3rem;
   }
 
 
@@ -275,8 +280,8 @@ padding: auto;
 .modal-content {
   background-color: #fefefe;
   margin: auto;
+  border: 0;
   padding: 20px;
-  border: 1px solid #888;
   width: 100%;
   max-width: 400px;
 }
@@ -296,3 +301,11 @@ padding: auto;
   cursor: pointer;
 }
 /* SECCION DE LOGIN*/
+.img-producto{
+    max-height: 17rem;
+    min-height: 17rem;
+    width:auto;
+  }
+  .producto{
+      min-width:17rem;
+  }
