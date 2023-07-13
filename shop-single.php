@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/templatemo.css">
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
@@ -33,7 +33,16 @@ https://templatemo.com/tm-559-zay-shop
 <?php
    include_once("menu.php");
    include_once("whatsapp.php");
+   include_once("conexion.php");
 ?>
+
+
+
+
+
+
+
+
 
     <!-- Open Content -->
     <section class="bg-light">
@@ -41,7 +50,19 @@ https://templatemo.com/tm-559-zay-shop
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <img class="card-img img-fluid" src="assets/img/losa1.png" alt="Card image cap" id="product-detail">
+                    <?php
+                        include_once("conexion.php");
+                        $query = mysqli_query($conexion, "SELECT imagen FROM productos WHERE id=1");
+                        
+                        $resultado = mysqli_num_rows($query);
+                        if ($resultado > 0) {
+                            while ($data = mysqli_fetch_assoc($query)) {
+                                ?>
+                                    <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
+
+                            <?php  }
+                        } 
+                    ?>
                     </div>
                     <div class="row">
                         <!--Start Controls-->
@@ -62,12 +83,36 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="row">
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/losa1.png" alt="Product Image 1">
+                                                <?php
+                                                    include_once("conexion.php");
+                                                    $query = mysqli_query($conexion, "SELECT imagen FROM productos WHERE id=1");
+                                                    
+                                                    $resultado = mysqli_num_rows($query);
+                                                    if ($resultado > 0) {
+                                                        while ($data = mysqli_fetch_assoc($query)) {
+                                                            ?>
+                                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
+
+                                                        <?php  }
+                                                    } 
+                                                ?>
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/losa1.png" alt="Product Image 2">
+                                                <?php
+                                                    include_once("conexion.php");
+                                                    $query = mysqli_query($conexion, "SELECT imagen FROM productos WHERE id=1");
+                                                    
+                                                    $resultado = mysqli_num_rows($query);
+                                                    if ($resultado > 0) {
+                                                        while ($data = mysqli_fetch_assoc($query)) {
+                                                            ?>
+                                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
+
+                                                        <?php  }
+                                                    } 
+                                                ?>
                                             </a>
                                         </div>
                                         <div class="col-4">
@@ -150,7 +195,8 @@ https://templatemo.com/tm-559-zay-shop
                                 <i class="fa fa-star text-warning"></i>
                                 <span class="list-inline-item text-dark">Calificación 4.9 | 12 Comentarios</span>
                             </p>
-                           
+                            <h4>Descripción:</h4>
+                            <p>MANO DE OBRA PARA ARMADO DE LOSA con varilla de hasta 1/2" de diámetro y separación de 0 hasta 25 cm como máximo en una sola parrilla, incluye: herramienta y equipo.</p>
                             <form action="" method="GET">
                                 <input type="hidden" name="product-title" value="Activewear">
                                 <div class="row">
@@ -161,24 +207,23 @@ https://templatemo.com/tm-559-zay-shop
                                                 Cantidad
                                                 <input type="hidden" name="product-quanity" id="product-quanity" value="1">
                                             </li>
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
+                                            <li class="list-inline-item"><span class="btn btn-success1" id="btn-minus">-</span></li>
                                             <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
+                                            <li class="list-inline-item"><span class="btn btn-success1" id="btn-plus">+</span></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="row pb-3">
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Comprar</button>
+                                        <button type="submit" class="btn btn-success1 btn-lg" name="submit" value="buy">Comprar</button>
                                     </div>
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Añadir al carrito</button>
+                                        <button type="submit" class="btn btn-success1 btn-lg" name="submit" value="addtocard">Añadir al carrito</button>
                                     </div>
                                 </div>
                             </form>
                             <br>
-                            <h4>Descripción:</h4>
-                            <p>MANO DE OBRA PARA ARMADO DE LOSA con varilla de hasta 1/2" de diámetro y separación de 0 hasta 25 cm como máximo en una sola parrilla, incluye: herramienta y equipo.</p>
+                            
                             <details>
                                 <summary>¿Cómo se hace?</summary>
                                 <p>Se coloca una parrilla de 25x25 cms en ambos sentidos y se ponen casetón o ladrillo para aligerar la losa catalana y en el caso de la losa solida no se coloca ninguno.</p>
@@ -203,9 +248,8 @@ https://templatemo.com/tm-559-zay-shop
                                 <p>Para tú seguridad se cuenta con garantía de 3 meses por el servicio que se realice.</p>
                             </details>
                           <br>
-                          <h4>Especificaciones:</h4>
-                          <hr width="100%">
-                          <table>
+                          <h4 class="p-2 m-auto w-auto linea ">Especificaciones</h4>
+                          <table class="m-2">
                             <tr>
                                 <th>Medidas</th>
                                 <td>1x1</td>
@@ -241,22 +285,14 @@ https://templatemo.com/tm-559-zay-shop
     <!-- Close Content -->
 
 
-<style>
-    hr{
-    position:static;
-    width: 100%;
-    background-color: #FF4D00;
-    border: 5px solid #FF4D00;
-}
-</style>
+
 
 
     <!-- Start Article -->
     <section class="py-5">
         <div class="container">
-            <div class="row text-left p-2 pb-3">
-                <h1 class="h2">Reseñas</h1>
-                <hr>
+            <div>
+                <h2 class="p-2 m-1 w-auto linea ">Reseñas</h2>
             </div>
             
             <div class="row text-left p-2 pb-3">
@@ -277,9 +313,8 @@ https://templatemo.com/tm-559-zay-shop
 
     <section class="py-5">
         <div class="container">
-            <div class="row text-left p-2 pb-3">
-                <h1 class="h2">Te podría interesar...</h1>
-                <hr>
+            <div>
+                <h2 class="p-2 m-1 w-auto linea ">Te podría interesar...</h2>
             </div>
 
             <!--Start Carousel Wrapper-->
@@ -291,9 +326,9 @@ https://templatemo.com/tm-559-zay-shop
                             <img class="card-img rounded-0 img-fluid" src="assets/img/shop_08.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -329,9 +364,9 @@ https://templatemo.com/tm-559-zay-shop
                             <img class="card-img rounded-0 img-fluid" src="assets/img/shop_09.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -367,9 +402,9 @@ https://templatemo.com/tm-559-zay-shop
                             <img class="card-img rounded-0 img-fluid" src="assets/img/shop_10.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -405,9 +440,9 @@ https://templatemo.com/tm-559-zay-shop
                             <img class="card-img rounded-0 img-fluid" src="assets/img/shop_11.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -443,9 +478,9 @@ https://templatemo.com/tm-559-zay-shop
                             <img class="card-img rounded-0 img-fluid" src="assets/img/shop_08.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -481,9 +516,9 @@ https://templatemo.com/tm-559-zay-shop
                             <img class="card-img rounded-0 img-fluid" src="assets/img/shop_09.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -519,9 +554,9 @@ https://templatemo.com/tm-559-zay-shop
                             <img class="card-img rounded-0 img-fluid" src="assets/img/shop_10.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -557,9 +592,9 @@ https://templatemo.com/tm-559-zay-shop
                             <img class="card-img rounded-0 img-fluid" src="assets/img/shop_11.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -595,9 +630,9 @@ https://templatemo.com/tm-559-zay-shop
                             <img class="card-img rounded-0 img-fluid" src="assets/img/shop_08.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -633,9 +668,9 @@ https://templatemo.com/tm-559-zay-shop
                             <img class="card-img rounded-0 img-fluid" src="assets/img/shop_09.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -671,9 +706,9 @@ https://templatemo.com/tm-559-zay-shop
                             <img class="card-img rounded-0 img-fluid" src="assets/img/shop_10.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -709,9 +744,9 @@ https://templatemo.com/tm-559-zay-shop
                             <img class="card-img rounded-0 img-fluid" src="assets/img/shop_11.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
