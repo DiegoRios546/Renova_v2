@@ -191,19 +191,6 @@
 </div>
     <!-- End Content -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
      <?php
     include_once("footer.php");
     include_once("sweetalert.php");

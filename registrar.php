@@ -4,30 +4,28 @@ if (isset($_SESSION))
 {
     session_destroy();
 }
-$entrar = "";
+$entrar="";
+if ($_SERVER["REQUEST_METHOD"]=="POST")
+{
+   $us=$_POST['nombre'];
+   $ps=$_POST['pass'];
+   //$tel=$_POST['tel'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   include_once('conexion.php');
 
-  //variables del formulario
-  $us = $_POST['nombre'];
-  $ps = $_POST['password'];
-
-  include_once('conexion.php');
-
-  //$consulta="select usuario,password,privilegio from usuarios where usuario='$us' and password='$ps'";
-
-  $consulta = "INSERT INTO USUARIOS VALUES (null,'$us','$ps',null,'estandar');";
-  $resultado=$conexion->query($consulta);
-  if ($consulta) {
-    
-    if($resultado){
-      $entrar = "registro";
-    }else {
-    $entrar = "error_registro";
-  }
-}else {
-  $entrar = "error1";
-}
+   $consulta="insert into usuarios values (null,'$us','$ps', null,'estandar')";
+    if($consulta){
+        $resultado=$conexion->query($consulta);
+       if($resultado){
+        $entrar="registro"; 
+       }
+       else{
+        $entrar="error_registro";
+       }
+    }
+    else{
+        $entrar="error1";
+      }
 }
 ?>
 
@@ -58,12 +56,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <div class="login-container">
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
       <div class="input-wrapper">
         <input type="email" class="input" id="email" placeholder="Correo electrónico" name="nombre" required />
         <i class="fa-solid fa-user fa-sm icon-usr" style="color: #fd5100;"></i>
-          <input type="password" class="input" id="password" placeholder="Contraseña" name="password" required />
+          <input type="password" class="input" id="password" placeholder="Contraseña" name="pass" required />
           <i class="fa-solid fa-key fa-sm icon-pw" style="color: #fd5100;"></i>
+          <input type="text" class="input" id="tel" placeholder="Telefono" name="tel"  />
       </div>
       <button type="submit" class="login-btn" value="iniciar sesion" name="btningresar">Crear cuenta</button>
     </form>

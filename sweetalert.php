@@ -2,18 +2,11 @@
 
 <?php if ($entrar=="registro"){ ?>
 <script>
-    function mensaje(){
-        Swal.fire({
-  position: 'center',
-  icon: 'success',
-  title: 'Registrado con exito',
-  showConfirmButton: false,
-  timer: 2000
-}).then(function(){
-    location.href='index.php';
+Swal.fire({
+  icon: 'warning',
+  title: 'Advertencia',
+  text: 'Ten en cuenta esta advertencia.'
 });
-    }
-    mensaje();
 </script>
 
 <?php } if ($entrar=="error_registro"){ ?>
@@ -122,11 +115,11 @@
         Swal.fire({
   position: 'center',
   icon: 'success',
-  title: 'B I E N V E N I D O al sistema estandar <?php  echo $_SESSION['usuario']?>!',
+  title: 'Agregado con exito!',
   showConfirmButton: false,
   timer: 2000
 }).then(function(){
-    location.href='index.php';
+    location.href='shop.php';
 });
     }
     mensaje();

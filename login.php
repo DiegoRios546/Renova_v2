@@ -1,46 +1,50 @@
 <?php
-if (isset($_SESSION)) {
-  session_destroy();
+
+
+if (isset($_SESSION))
+{
+    session_destroy();
 }
-$entrar = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$entrar="";
+if ($_SERVER["REQUEST_METHOD"]=="POST")
+{
+   $us=$_POST['nombre'];
+   $ps=$_POST['pass'];
 
-  //variables del formulario
-  $us = $_POST['nombre'];
-  $ps = $_POST['password'];
+   include_once('conexion.php');
 
-  include_once('conexion.php');
+   //$consulta="select usuario,password,privilegio from usuarios where usuario='$us' and password='$ps'";
 
-  //$consulta="select usuario,password,privilegio from usuarios where usuario='$us' and password='$ps'";
+   $consulta="select usuario,password,privilegio from usuarios where usuario='$us' and password='$ps'";
+   $resultado=$conexion->query($consulta);
 
-  $consulta = "select usuario,password,privilegio from usuarios where usuario='$us' and password='$ps'";
-  $resultado = $conexion->query($consulta);
+   if ($resultado->num_rows > 0)
+   {
+       while ($fila=$resultado->fetch_assoc())
+       {
+           $priv=$fila['privilegio'];
+           
 
-  if ($resultado) {
-    while ($fila = $resultado->fetch_assoc()) {
-      $priv = $fila['privilegio'];
+           session_start();
+           $_SESSION['usuario']=$us;
+           $_SESSION['password']=$ps;
+           $_SESSION['privilegio']=$priv;
 
+           //Entre al menu de opciones 
+         
+           if($priv=="admin"){
+               $entrar="admin";
 
-      session_start();
-      $_SESSION['usuario'] = $us;
-      $_SESSION['password'] = $ps;
-      $_SESSION['privilegio'] = $priv;
-
-      //Entre al menu de opciones 
-
-      if ($priv == "admin") {
-        $entrar = "admin";
-
-      }
-    }
-    if ($priv == "estandar") {
-      $entrar = "estandar";
-    }
-  } else {
-    $entrar = "error1";
-  }
+         }
+        }
+         if($priv=="estandar"){
+               $entrar="estandar";
+         }
+        }
+else{
+  $entrar="error1";
 }
-
+}
 ?>
 
 
@@ -75,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="input-wrapper">
         <input type="email" class="input" id="email" placeholder="Correo electrónico" name="nombre" required />
         <i class="fa-solid fa-user fa-sm icon-usr" style="color: #fd5100;"></i>
-        <input type="password" class="input" id="password" placeholder="Contraseña" name="password" required />
+        <input type="password" class="input" id="password" placeholder="Contraseña" name="pass" required />
         <i class="fa-solid fa-key fa-sm icon-pw" style="color: #fd5100;"></i>
       </div>
       <button type="submit" class="login-btn" value="iniciar sesion" name="btningresar">Iniciar sesión</button>
