@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/templatemo.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
@@ -117,7 +117,19 @@ https://templatemo.com/tm-559-zay-shop
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/losa1.png" alt="Product Image 3">
+                                                <?php
+                                                    include_once("conexion.php");
+                                                    $query = mysqli_query($conexion, "SELECT imagen FROM productos WHERE id=1");
+                                                    
+                                                    $resultado = mysqli_num_rows($query);
+                                                    if ($resultado > 0) {
+                                                        while ($data = mysqli_fetch_assoc($query)) {
+                                                            ?>
+                                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
+
+                                                        <?php  }
+                                                    } 
+                                                ?>
                                             </a>
                                         </div>
                                     </div>
@@ -185,57 +197,30 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h1 class="h2">LOSAS M2 de ARMADO DE ACERO en losa de concreto hasta una altura de 3.00 mts. M.O/MXN</h1>
+                            <h1>LOSAS M2 de ARMADO DE ACERO en losa de concreto hasta una altura de 3.00 mts. M.O/MXN</h1>
                             <p class="h3 py-2">$120.00</p>
-                            <p class="py-2">
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <span class="list-inline-item text-dark">Calificación 4.9 | 12 Comentarios</span>
-                            </p>
-                            <h4>Descripción:</h4>
+
+                            <h3>Descripción:</h3>
                             <p>MANO DE OBRA PARA ARMADO DE LOSA con varilla de hasta 1/2" de diámetro y separación de 0 hasta 25 cm como máximo en una sola parrilla, incluye: herramienta y equipo.</p>
-                            <form action="" method="GET">
-                                <input type="hidden" name="product-title" value="Activewear">
-                                <div class="row">
-                                    
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item text-right">
-                                                Cantidad
-                                                <input type="hidden" name="product-quanity" id="product-quanity" value="1">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success1" id="btn-minus">-</span></li>
-                                            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success1" id="btn-plus">+</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
                                 <div class="row pb-3">
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success1 btn-lg" name="submit" value="buy">Comprar</button>
-                                    </div>
-                                    <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success1 btn-lg" name="submit" value="addtocard">Añadir al carrito</button>
+                                        <a href="https://api.whatsapp.com/send?phone=526181461515&text=Hola, Necesito mas informacion!">
+                                            <button class="btn btn-success1 btn-lg"><i class="fa-brands fa-whatsapp"></i>  Más información / Ponte en contacto con nosotros</button>
+                                        </a>
                                     </div>
                                 </div>
-                            </form>
-                            <br>
-                            
                             <details>
-                                <summary>¿Cómo se hace?</summary>
+                                <summary class="h3">¿Cómo se hace?</summary>
                                 <p>Se coloca una parrilla de 25x25 cms en ambos sentidos y se ponen casetón o ladrillo para aligerar la losa catalana y en el caso de la losa solida no se coloca ninguno.</p>
                             </details>
                             <details>
-                                <summary>¿Cómo se realizan los pagos?</summary>
+                                <summary class="h3">¿Cómo se realizan los pagos?</summary>
                                 <p>Se establecen trabajos en un periodo semanal y se realiza el pago, al final de la semana el supervisor de área dará por concluidas las tareas asignadas.
 
                                     Y programará los trabajos para el siguiente periodo en una orden de trabajo.</p>
                             </details>
                             <details>
-                                <summary>¿Qué beneficios tengo al contratarlos?</summary>
+                                <summary class="h3">¿Qué beneficios tengo al contratarlos?</summary>
                                 <p>-Tu controlas la inversión. <br>
                                     -Tenemos 15 años de experiencia.<br>
                                     -Terminamos en los tiempos establecidos.<br>
@@ -244,7 +229,7 @@ https://templatemo.com/tm-559-zay-shop
                                     -La cotización se realiza sin compromiso.</p>
                             </details>
                             <details>
-                                <summary>¿Tengo garantía del trabajo?</summary>
+                                <summary class="h3">¿Tengo garantía del trabajo?</summary>
                                 <p>Para tú seguridad se cuenta con garantía de 3 meses por el servicio que se realice.</p>
                             </details>
                           <br>
@@ -284,31 +269,6 @@ https://templatemo.com/tm-559-zay-shop
     </section>
     <!-- Close Content -->
 
-
-
-
-
-    <!-- Start Article -->
-    <section class="py-5">
-        <div class="container">
-            <div>
-                <h2 class="p-2 m-1 w-auto linea ">Reseñas</h2>
-            </div>
-            
-            <div class="row text-left p-2 pb-3">
-                <h1 class="h2">Opinión de clientes</h1>
-            </div>
-            <h1 class="h2">
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <span class="list-inline-item text-dark"><h4>4.9 de 5</h4></span>
-            </h1>
-            
-    </section>
-    <!-- End Article -->
 
 
     <section class="py-5">
