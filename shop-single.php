@@ -31,9 +31,9 @@ https://templatemo.com/tm-559-zay-shop
 
 <body>
 <?php
-   include_once("menu.php");
-   include_once("whatsapp.php");
-   include_once("conexion.php");
+    include_once("menu.php");
+    include_once("whatsapp.php");
+    include_once("conexion.php");
 ?>
 
 
@@ -48,21 +48,17 @@ https://templatemo.com/tm-559-zay-shop
     <section class="bg-light">
         <div class="container pb-5">
             <div class="row">
+                <?php
+                    include_once("conexion.php");
+                    $query = mysqli_query($conexion, "SELECT * FROM productos WHERE id=1");
+                            
+                    $resultado = mysqli_num_rows($query);
+                    if ($resultado > 0) {
+                        while ($data = mysqli_fetch_assoc($query)) {
+                ?>
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                    <?php
-                        include_once("conexion.php");
-                        $query = mysqli_query($conexion, "SELECT imagen FROM productos WHERE id=1");
-                        
-                        $resultado = mysqli_num_rows($query);
-                        if ($resultado > 0) {
-                            while ($data = mysqli_fetch_assoc($query)) {
-                                ?>
-                                    <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
-
-                            <?php  }
-                        } 
-                    ?>
+                        <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
                     </div>
                     <div class="row">
                         <!--Start Controls-->
@@ -83,53 +79,17 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="row">
                                         <div class="col-4">
                                             <a href="#">
-                                                <?php
-                                                    include_once("conexion.php");
-                                                    $query = mysqli_query($conexion, "SELECT imagen FROM productos WHERE id=1");
-                                                    
-                                                    $resultado = mysqli_num_rows($query);
-                                                    if ($resultado > 0) {
-                                                        while ($data = mysqli_fetch_assoc($query)) {
-                                                            ?>
-                                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
-
-                                                        <?php  }
-                                                    } 
-                                                ?>
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 1" />
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <?php
-                                                    include_once("conexion.php");
-                                                    $query = mysqli_query($conexion, "SELECT imagen FROM productos WHERE id=1");
-                                                    
-                                                    $resultado = mysqli_num_rows($query);
-                                                    if ($resultado > 0) {
-                                                        while ($data = mysqli_fetch_assoc($query)) {
-                                                            ?>
-                                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
-
-                                                        <?php  }
-                                                    } 
-                                                ?>
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 2" />
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <?php
-                                                    include_once("conexion.php");
-                                                    $query = mysqli_query($conexion, "SELECT imagen FROM productos WHERE id=1");
-                                                    
-                                                    $resultado = mysqli_num_rows($query);
-                                                    if ($resultado > 0) {
-                                                        while ($data = mysqli_fetch_assoc($query)) {
-                                                            ?>
-                                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
-
-                                                        <?php  }
-                                                    } 
-                                                ?>
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 3" />
                                             </a>
                                         </div>
                                     </div>
@@ -141,17 +101,17 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="row">
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/losas_de_armado_de_acero.jpeg" alt="Product Image 4">
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 4" />
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/losas_de_armado_de_acero.jpeg" alt="Product Image 5">
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 5" />
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/losas_de_armado_de_acero.jpeg" alt="Product Image 6">
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 6" />
                                             </a>
                                         </div>
                                     </div>
@@ -163,17 +123,17 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="row">
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/losas_de_armado_de_acero.jpeg" alt="Product Image 7">
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 7" />
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/losas_de_armado_de_acero.jpeg" alt="Product Image 8">
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 8" />
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/losas_de_armado_de_acero.jpeg" alt="Product Image 9">
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 9" />
                                             </a>
                                         </div>
                                     </div>
@@ -197,11 +157,12 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h1>LOSAS M2 de ARMADO DE ACERO en losa de concreto hasta una altura de 3.00 mts. M.O/MXN</h1>
-                            <p class="h3 py-2">$120.00</p>
+                            <h1><?php echo $data['nombre'] ?></h1>
+                            <h5 class="text-decoration-line-through">$<?php echo $data['precio-regu'] ?></h5>
+                            <h2 class="fw-bolder">$<?php echo $data['precio-desc'] ?></h2>
 
                             <h3>Descripción:</h3>
-                            <p>MANO DE OBRA PARA ARMADO DE LOSA con varilla de hasta 1/2" de diámetro y separación de 0 hasta 25 cm como máximo en una sola parrilla, incluye: herramienta y equipo.</p>
+                            <p><?php echo $data['descripcion']; ?></p>
                                 <div class="row pb-3">
                                     <div class="col d-grid">
                                         <a href="https://api.whatsapp.com/send?phone=526181461515&text=Hola, Necesito mas informacion!">
@@ -233,7 +194,7 @@ https://templatemo.com/tm-559-zay-shop
                                 <p>Para tú seguridad se cuenta con garantía de 3 meses por el servicio que se realice.</p>
                             </details>
                           <br>
-                          <h4 class="p-2 m-auto w-auto linea ">Especificaciones</h4>
+                          <h3 class="p-2 m-auto w-auto linea ">Especificaciones</h3>
                           <table class="m-2">
                             <tr>
                                 <th>Medidas</th>
@@ -264,6 +225,9 @@ https://templatemo.com/tm-559-zay-shop
                         </div>
                     </div>
                 </div>
+                <?php  }
+                        } 
+                ?>
             </div>
         </div>
     </section>
