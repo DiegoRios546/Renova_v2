@@ -1,49 +1,53 @@
 <?php
 
+session_start();
 
-if (isset($_SESSION))
-{
-    session_destroy();
+if (isset($_SESSION)){
+  session_destroy();
 }
+
 $entrar="";
-if ($_SERVER["REQUEST_METHOD"]=="POST")
-{
+
+if ($_SERVER["REQUEST_METHOD"]=="POST"){
+
    $us=$_POST['nombre'];
    $ps=$_POST['pass'];
 
-   include_once('conexion.php');
+   //variables de conexion a la base de datos
+   
+   $host = "localhost";
+   $user = "root";
+   $clave = "";
+   $bd = "renova";
 
-   //$consulta="select usuario,password,privilegio from usuarios where usuario='$us' and password='$ps'";
+   //Crear conexion
+   $conexion = new mysqli($host, $user, $clave, $bd);
 
-   $consulta="select usuario,password,privilegio from usuarios where usuario='$us' and password='$ps'";
+   //consulta a la base de datos
+   $consulta="SELECT * from usuarios WHERE usuario='$us' AND password='$ps'";
    $resultado=$conexion->query($consulta);
 
-   if ($resultado->num_rows > 0)
-   {
-       while ($fila=$resultado->fetch_assoc())
-       {
-           $priv=$fila['privilegio'];
-           
+   if ($resultado->num_rows > 0){
 
+       while ($fila=$resultado->fetch_assoc()){
+
+        $priv=$fila['privilegio'];
+           
            session_start();
            $_SESSION['usuario']=$us;
            $_SESSION['password']=$ps;
            $_SESSION['privilegio']=$priv;
 
            //Entre al menu de opciones 
-         
-           if($priv=="admin"){
-               $entrar="admin";
-
-         }
+      
+        } if($priv=="admin") {
+          $entrar="admin";
+        } else if($priv=="estandar") {
+          $entrar="estandar";
         }
-         if($priv=="estandar"){
-               $entrar="estandar";
-         }
-        }
-else{
+    } else {
   $entrar="error1";
-}
+    }
 }
 ?>
 
@@ -58,6 +62,7 @@ else{
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" type="text/css" href="assets/css/styles1.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,700,800,900"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -90,9 +95,9 @@ else{
   
     <hr>
   
-    <div class="social-login">
-      <button class="icono-boton"><i class="fa-brands fa-facebook fa-2xl"></i></button>
-      <button class="icono-boton"><i class="fa-brands fa-google fa-2xl"></i></button>
+    <div class="mx-auto align-items-center justify-content-center">
+    <a href="#" class="btn btn-google btn-block"><i class="fab fa-google fa-fw"></i></a>
+    <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f fa-fw"></i></a>
     </div>
 
     <div class="register d-flex align-items-center justify-content-center">
@@ -102,6 +107,7 @@ else{
   </div>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/modal.js"></script>
   <script src="assets/js/jquery-3.7.0.min.js"></script>
 </body>
 

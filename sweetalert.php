@@ -99,11 +99,11 @@ Swal.fire({
         Swal.fire({
   position: 'center',
   icon: 'success',
-  title: 'B I E N V E N I D O al sistema <?php  echo $_SESSION['usuario']?>!',
+  title: 'B I E N V E N I D O <?php  echo $_SESSION['usuario']?>!',
   showConfirmButton: false,
   timer: 2000
 }).then(function(){
-    location.href='index.php';
+    location.href='admin/index.php';
 });
     }
     mensaje();
@@ -115,11 +115,11 @@ Swal.fire({
         Swal.fire({
   position: 'center',
   icon: 'success',
-  title: 'Agregado con exito!',
+  title: 'B I E N V E N I D O <?php  echo $_SESSION['usuario']?>!',
   showConfirmButton: false,
   timer: 2000
 }).then(function(){
-    location.href='shop.php';
+    location.href='admin/index.php';
 });
     }
     mensaje();

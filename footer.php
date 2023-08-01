@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/styles.css">
 <link rel="stylesheet" href="assets/css/fontawesome.min.css">
 <!-- Eslogan -->
 <nav class="navbar bg-dark navbar-light" >
@@ -68,7 +68,7 @@
                         <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw border border-white rounded-circle"></i>Instagram</a>
                     </li>
                     <li class="list-block-item ">
-                    <a class="text-light text-decoration-none" target="_blank" href="https://api.whatsapp.com/send?phone=0123456789&text=Hola, Nececito mas informacion!"><i class="fab fa-whatsapp fa-lg fa-fw border border-white rounded-circle"></i>Whatsapp</a>
+                    <a class="text-light text-decoration-none" target="_blank" href="https://api.whatsapp.com/send?phone=526181461515&text=Hola, Nececito mas informacion!"><i class="fab fa-whatsapp fa-lg fa-fw border border-white rounded-circle"></i>Whatsapp</a>
                     </li>
                 </ul>
             </div>

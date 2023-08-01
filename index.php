@@ -1,5 +1,6 @@
 <?php
-include_once("conexion.php");
+   include_once("conexion.php");
+
 // Obtener la página actual
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $items_per_page = 5; // Número de elementos por página
@@ -42,7 +43,8 @@ $items_result = $conexion->query($items_query);
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles1.css">
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
@@ -52,12 +54,17 @@ $items_result = $conexion->query($items_query);
    include_once("menu.php");
    include_once("whatsapp.php");
 ?>
-<section id="content">
-<div width="100%" class="bg-red text-center">
+  <div class="mx-auto m-0 p-0 bg-red text-center">
     <a class="text-decoration-none text-white" href="shop.php">
         Toda la tienda en descuento Ver mas > 
     </a>
 </div>
+
+<section id="content">
+
+
+
+
 
     <!-- Carrusel -->
 <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -119,7 +126,7 @@ $items_result = $conexion->query($items_query);
     <div class="d-flex mx-auto ">
         <div class="mx-auto p-3">
             <a href="#"><img class="img-fluid brand-img" src="assets/img/diseño.png" alt="Brand Logo"></a>
-            <h3 class="text-center mt-1">Diseños</h3>
+            <h3 class="text-center mt-3">Diseños</h3>
         </div>
         <div class="mx-auto p-3">
             <a href="#"><img class="img-fluid brand-img" src="assets/img/ladrillos.png" alt="Brand Logo"></a>
@@ -129,7 +136,7 @@ $items_result = $conexion->query($items_query);
     <div class="d-flex mx-auto">
         <div class="mx-auto p-3">
             <a href="#"><img class="img-fluid brand-img" src="assets/img/eco.png" alt="Brand Logo"></a>
-            <h3 class="text-center mt-2">Eco-ladrillo</h3>
+            <h3 class="text-center ">Eco-ladrillo</h3>
         </div>
         <div class="mx-auto p-3">
             <a href="#"><img class="img-fluid brand-img" src="assets/img/inmobiliaria.png" alt="Brand Logo"></a>
@@ -173,61 +180,169 @@ $items_result = $conexion->query($items_query);
 
 
 
-<?php
-   //include_once("productos.php");
+<div class="row mx-3 " id="servicios">
+    <h2 class="p-2 m-1 linea fw-bolder">Las mejores promociones</h2>
+
+    <div class="mx-auto m-auto ">
+    <div class="mx-auto m-auto " >
+
+<!-- Mostrar los elementos de la página actual -->
+        <div id="item" class="row  m-1" >
+            <!-- obtener los valores de la consulta -->
+            <?php while ($row = $items_result->fetch_assoc()): ?>
+
+            <!-- contenedor de un producto -->
+            <div class="productos mx-auto row">
+            <div class=" mx-auto row " >
+                <div class="card mb-4 product-wap rounded-0 ">
+                    <!-- contenedor de imagen -->
+                    <div class="card rounded-0 mx-auto">
+                        <a href="shop-single.php" target="_self">
+                        <img class="img-pro img-fluid" src="data:image/png; base64, <?php echo base64_encode( $row['imagen']); ?>" alt="..." />
+                        </a>
+                        <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-end justify-content-end">
+                            <ul class="list-unstyled">
+                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- contenedor de especificaciones -->
+                    <div class="card-body m-auto">
+                    <ul class="list-unstyled row my-1" style="height:100%;">
+                            <li class="m-auto">
+                                <!-- nombre del producto -->
+                                <h3 class="fw-bolder"><?php echo $row['nombre'] ?></h3>
+                            </li>
+                            <li class="m-auto">
+                                <h5 class=""><?php echo $row['descripcion']; ?></h5>
+                            </li>
+                            <li class="m-auto">
+                                <!-- estrellas -->
+                                <div class="rating d-flex align-items-center">
+                                    <span class="star" data-value="1">&#9733;</span>
+                                    <span class="star" data-value="2">&#9733;</span>
+                                    <span class="star" data-value="3">&#9733;</span>
+                                    <span class="star" data-value="4">&#9733;</span>
+                                    <span class="star" data-value="5">&#9733;</span>
+                                    <p class=" m-2">4.8, </p>
+                                    <p>(24) reseñas</p>
+                                </div>
+                            </li>
+                            <li class="m-auto"><h4>id:14578</h4></li>
+                            <li class="m-auto">
+                                <h5 class="">Antes:<span class="text-decoration-line-through text-dark">$<?php echo $row['precio-regu'] ?></span></h5>
+                            </li>
+                            <li class="m-auto"><h1 class="">$<?php echo $row['precio-desc'] ?></h1></li>
+                            <li class="m-auto d-flex mx-auto">
+                                <h4 class="text-success1 m-auto border-bottom">Ahorras:$100.00</h4>    
+                                <a  class="btn p-2 btn-success1 m-auto" href="img_detalle.php?id=<?php echo $row['id'];?>">
+                                         <i class="fa fa-lg fa-cart-plus text-white p-2"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                <!-- Fin contenedor de especificaciones -->
+                </div>
+            </div>
+            </div>
+        <!-- Fin contenedor de un producto -->
+             
+         <!-- Fin de la consulta -->
+         <?php endwhile; ?>
+         <div class="pagination">
+<!-- Botón de página anterior -->
+<?php if ($current_page > 1): ?>
+  <a href="?page=<?php echo ($current_page - 1); ?>" class="p-2 text-dark pagination-button"><i class="fas fa-chevron-left"></i></a>
+<?php endif; ?>
+    <!-- Botones de páginas numeradas -->
+    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+  <button onclick="location.href='?page=<?php echo $i; ?>'" class="px-3 py-2 pagination-button <?php echo ($i == $current_page) ? 'active' : ''; ?>">
+    <?php echo $i; ?>
+  </button>
+<?php endfor; ?>
+            <!-- Botón de página siguiente -->
+            <?php if ($current_page < $total_pages): ?>
+  <a href="?page=<?php echo ($current_page + 1); ?>" class="p-2 text-dark  pagination-button"><i class="fas fa-chevron-right"></i></a>
+<?php endif; ?>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+
+<div class="row mx-3">
+    <h2 class="p-2 m-1 linea fw-bolder">Las mejores promociones</h2>
+
+    <div class="">
+    <?php
+include_once("conexion.php");
+// Obtener la página actual
+$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+$items_per_page = 5; // Número de elementos por página
+
+// Consulta para obtener el total de elementos
+$total_items_query = "SELECT COUNT(*) AS total FROM productos";
+$total_items_result = $conexion->query($total_items_query);
+$total_items = $total_items_result->fetch_assoc()['total'];
+
+// Calcular el número total de páginas
+$total_pages = ceil($total_items / $items_per_page);
+
+// Calcular el índice de inicio y fin de los elementos en la página actual
+$start_index = ($current_page - 1) * $items_per_page;
+$end_index = $start_index + $items_per_page;
+
+// Consulta para obtener los elementos de la página actual
+$items_query = "SELECT * FROM productos LIMIT $start_index, $items_per_page";
+$items_result = $conexion->query($items_query);
+
 ?>
 
 
-<div class="row d-none d-sm-block">
-    <h1 class="p-2 m-1 linea">Las mejores promociones</h1>
 
 
+    <div class="mx-auto m-auto " >
 
-    <div class="mx-auto m-auto ">
-    <div class="pagination">
-
-        <!-- Botones de páginas numeradas -->
-        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-      <button onclick="location.href='?page=<?php echo $i; ?>'" class="pagination-button <?php echo ($i == $current_page) ? 'active' : ''; ?>">
-        <?php echo $i; ?>
-      </button>
-    <?php endfor; ?>
-    </div>
 
     <!-- Mostrar los elementos de la página actual -->
-    <div class="pagination">
-    <!-- Botón de página anterior -->
-    <?php if ($current_page > 1): ?>
-      <button onclick="location.href='?page=<?php echo ($current_page - 1); ?>'" class="pagination-button">&lt;</button>
-    <?php endif; ?>
+    <div class="pagination ">
 
-            <div id="item" class="row m-auto d-flex" >
+
+            <div id="item" class="row m-auto " >
                 <!-- obtener los valores de la consulta -->
                 <?php while ($row = $items_result->fetch_assoc()): ?>
 
                 <!-- contenedor de un producto -->
-                <div class=" producto m-2 row " >
-                    <div class="card mb-4 product-wap rounded-0">
+                <div class="productos mx-auto row">
+                <div class=" mx-auto row" >
+                    <div class="card mb-4 product-wap rounded-0 ">
                         <!-- contenedor de imagen -->
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-producto img-fluid" src="data:image/png; base64, <?php echo base64_encode( $row['imagen']); ?>" alt="..." />
+
+  ?>
+                        <a class="card-header rounded-0" >
+                                <img class="card-img rounded-0 img-pro img-fluid" src="data:image/png; base64, <?php echo base64_encode( $row['imagen']); ?>" alt="..." />
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-end justify-content-end">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success1 text-white mt-2"     ><i class="far fa-eye"></i></a></li>
                                     <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </a>
 
                         <!-- contenedor de especificaciones -->
                         <div class="card-body m-auto">
-                            <ul class="list-unstyled row my-1" style="height:100%;">
+                        <ul class="list-unstyled row my-1" style="height:100%;">
                                 <li class="m-auto">
                                     <!-- nombre del producto -->
                                     <h3 class="fw-bolder"><?php echo $row['nombre'] ?></h3>
                                 </li>
                                 <li class="m-auto">
-                                    <h5 class="d-none d-sm-block"><?php echo $row['descripcion']; ?></h5>
+                                    <h5 class=""><?php echo $row['descripcion']; ?></h5>
                                 </li>
                                 <li class="m-auto">
                                     <!-- estrellas -->
@@ -237,39 +352,55 @@ $items_result = $conexion->query($items_query);
                                         <span class="star" data-value="3">&#9733;</span>
                                         <span class="star" data-value="4">&#9733;</span>
                                         <span class="star" data-value="5">&#9733;</span>
-                                        <p class=" m-2">4.8, reseñas (24)</p>
+                                        <p class=" m-2">4.8, </p>
+                                        <p>(24) reseñas</p>
                                     </div>
                                 </li>
                                 <li class="m-auto"><h4>id:14578</h4></li>
                                 <li class="m-auto">
                                     <h5 class="">Antes:<span class="text-decoration-line-through text-dark">$<?php echo $row['precio-regu'] ?></span></h5>
                                 </li>
-                                <li class="m-auto"><h2 class="">$<?php echo $row['precio-desc'] ?></h2></li>
-                                <li class="m-auto d-flex mx-auto"><h4 class="text-success1 m-auto border-bottom">Ahorras:$100.00</h4>    <button  class="btn p-2 btn-success1 m-auto" data-id="<?php echo $row['id']; ?>" href="#">
+
+                                <li class="m-auto d-flex mx-auto">
+                                    <h4 class="text-success1 m-auto border-bottom">Ahorras:$100.00</h4>    
+                                    <button  class="btn p-2 btn-success1 m-auto" data-id="<?php echo $row['id']; ?>" href="#">
                                              <i class="fa fa-lg fa-cart-plus text-white p-2"></i>
-                                        </button></li>
-                                <li class="m-auto" id="carrito" style="margin-left:10px;">                            <!-- carrito -->
-                                        
+                                    </button>
                                 </li>
                             </ul>
-                            
-
                         </div>
                     <!-- Fin contenedor de especificaciones -->
                     </div>
+                </div>
                 </div>
             <!-- Fin contenedor de un producto -->
                  
              <!-- Fin de la consulta -->
              <?php endwhile; ?>
-    </div>
-            <!-- Botón de página siguiente -->
-            <?php if ($current_page < $total_pages): ?>
-      <button onclick="location.href='?page=<?php echo ($current_page + 1); ?>'" class="pagination-button">&gt;</button>
+             <div class="pagination">
+    <!-- Botón de página anterior -->
+    <?php if ($current_page > 1): ?>
+      <button onclick="location.href='?page=<?php echo ($current_page - 1); ?>'" class="border-0 pagination-button">&lt;</button>
+    <?php endif; ?>
+        <!-- Botones de páginas numeradas -->
+        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+      <button onclick="location.href='?page=<?php echo $i; ?>'" class="px-3 py-2 pagination-button <?php echo ($i == $current_page) ? 'active' : ''; ?>">
+        <?php echo $i; ?>
+      </button>
+    <?php endfor; ?>
+                <!-- Botón de página siguiente -->
+                <?php if ($current_page < $total_pages): ?>
+      <button onclick="location.href='?page=<?php echo ($current_page + 1); ?>'" class="border-0 pagination-button">&gt;</button>
     <?php endif; ?>
     </div>
+    </div>
+
+    </div>
+    <script type="text/javascript" src="assets/js/mostrar.js"></script>
+</div>
 
 </div>
+
 
 
 
@@ -279,8 +410,8 @@ $items_result = $conexion->query($items_query);
     <?php
    include_once("footer.php");
    include_once("sweetalert.php");
-// Cerrar la conexión a la base de datos
-$conexion->close();
+  // Cerrar la conexión a la base de datos
+  $conexion->close();
 ?>
 
 
@@ -290,7 +421,7 @@ $conexion->close();
     <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/templatemo.js"></script>
-    <script type="text/javascript" src="assets/js/mostrar.js"></script>
+    <script src="assets/js/custom.js"></script>
     <!-- End Script -->
 </body>
 
