@@ -15,17 +15,11 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
 
    //variables de conexion a la base de datos
    
-   $host = "localhost";
-   $user = "root";
-   $clave = "";
-   $bd = "renova";
-
-   //Crear conexion
-   $conexion = new mysqli($host, $user, $clave, $bd);
+//conexion
 
    //consulta a la base de datos
    $consulta="SELECT * from usuarios WHERE usuario='$us' AND password='$ps'";
-   $resultado=$conexion->query($consulta);
+   $resultado=$con->query($consulta);
 
    if ($resultado->num_rows > 0){
 
@@ -62,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" type="text/css" href="assets/css/styles1.css" />
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/estilos.css" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,700,800,900"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -106,9 +100,6 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     </div>
   </div>
 
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/modal.js"></script>
-  <script src="assets/js/jquery-3.7.0.min.js"></script>
 </body>
 
 </html>

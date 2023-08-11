@@ -1,0 +1,134 @@
+  /* Typography */
+  body, ul, li, p, label, input, div {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px !important;
+    font-weight: 300 !important;
+  }
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px !important;
+    font-weight: 200 !important;
+  }
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px !important;
+    font-weight: 300;
+  }
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px !important;
+    font-weight: 300 !important;
+  }
+  h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300 !important;
+    font-size: 20px !important;
+  }
+  h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300 !important;
+  }
+  h4{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 15px;
+  }
+  
+.ctn-producto{
+                width: 40%;
+                min-height:40%;
+                max-height:40%;
+            }
+           
+            .menudo{
+    background-color: #454546;
+    position: sticky;
+    top:0;
+    width: 100%;
+    height: 10%;
+    z-index: 1;
+    
+}
+
+.img-producto{
+height:300px;width: 100%;
+}
+.icono{
+    height: 1.5rem;
+  }
+  .logo{
+    width: 3rem;
+  }
+.add{
+    width: 100%;
+    padding: 10px;
+    background-color:#fd5100;
+}
+.total{
+    position:absolute;
+    right:5;
+}
+tr {
+    margin-bottom: 10px; /* Agrega el espacio deseado entre filas */
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+
+}
+
+.input{
+    padding: 8px;
+    border:2px solid #aaa;
+    border-radius:4px;
+    outline:none;
+    transition:.3s;
+    width: 60%;
+}
+.input:focus{
+border-color:dodgerBlue;
+box-shadow:0 0 6px 0 dodgerBlue;
+}
+
+.input[type=submit]{
+    border: none;
+    padding: 12px 50px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #60a100;
+}
+
+.input[type=submit]:hover {
+    background-color: #60a100;
+    color: white;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-button {
+margin:1px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.pagination-button:hover {
+    background-color: #fd5100;
+}
+
+.pagination-button.active {
+    background-color: #fd5100;
+}
+.text-renova{
+    color:#fd5100;
+}

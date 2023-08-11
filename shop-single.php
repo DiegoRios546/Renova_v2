@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/templatemo.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
 
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
@@ -32,8 +32,7 @@ https://templatemo.com/tm-559-zay-shop
 <body>
 <?php
     include_once("menu.php");
-    include_once("whatsapp.php");
-    include_once("conexion.php");
+
 ?>
 
 
@@ -49,8 +48,10 @@ https://templatemo.com/tm-559-zay-shop
         <div class="container pb-5">
             <div class="row">
                 <?php
-                    include_once("conexion.php");
-                    $query = mysqli_query($conexion, "SELECT * FROM productos WHERE id=1");
+                      //conexion
+    include("admin/connection.php");
+    $con = connection();
+                    $query = mysqli_query($con, "SELECT * FROM mis_productos WHERE id=1");
                             
                     $resultado = mysqli_num_rows($query);
                     if ($resultado > 0) {
@@ -58,7 +59,7 @@ https://templatemo.com/tm-559-zay-shop
                 ?>
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="..." />
+                        <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['img']); ?>" alt="..." />
                     </div>
                     <div class="row">
                         <!--Start Controls-->
@@ -79,17 +80,17 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="row">
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 1" />
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['img']); ?>" alt="imagen 1" />
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 2" />
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['img']); ?>" alt="imagen 2" />
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 3" />
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['img']); ?>" alt="imagen 3" />
                                             </a>
                                         </div>
                                     </div>
@@ -101,44 +102,22 @@ https://templatemo.com/tm-559-zay-shop
                                     <div class="row">
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 4" />
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['img']); ?>" alt="imagen 4" />
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 5" />
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['img']); ?>" alt="imagen 5" />
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 6" />
+                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['img']); ?>" alt="imagen 6" />
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <!--/.Second slide-->
-
-                                <!--Third slide-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 7" />
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 8" />
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img rounded-0 img-fluid" src="data:image/png; base64, <?php echo base64_encode( $data['imagen']); ?>" alt="imagen 9" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/.Third slide-->
                             </div>
                             <!--End Slides-->
                         </div>
@@ -157,12 +136,11 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h1><?php echo $data['nombre'] ?></h1>
-                            <h5 class="text-decoration-line-through">$<?php echo $data['precio-regu'] ?></h5>
-                            <h2 class="fw-bolder">$<?php echo $data['precio-desc'] ?></h2>
+                            <h1><?php echo $data['name'] ?></h1>
+                            <h5 class="text-decoration-line-through">$<?php echo $data['price'] ?></h5>
 
                             <h3>Descripción:</h3>
-                            <p><?php echo $data['descripcion']; ?></p>
+                            <p><?php echo $data['description']; ?></p>
                                 <div class="row pb-3">
                                     <div class="col d-grid">
                                         <a href="https://api.whatsapp.com/send?phone=526181461515&text=Hola, Necesito mas informacion!">

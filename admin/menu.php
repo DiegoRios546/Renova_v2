@@ -1,15 +1,15 @@
 
 
 <div id="sideNavigation" class="sidenav text-light">
-  <a href="javascript:void(0)" class="closebtn text-dark" onclick="closeNav()">×</a>
-  <a class="text-dark" href="#">Inicio</a>
-  <a class="text-dark" href="#">Calculadora de presupuestos ></a>
-  <a class="text-dark" href="productos.php">Productos ></a>
-  <a class="text-dark" href="#">Ordenes ></a>
-  <a class="text-dark" href="#">Categorias ></a>
-  <a class="text-dark" href="#">Reseñas ></a>
-  <a class="text-dark" href="#">Imagenes ></a>
-  <a class="text-dark" href="#">Cerrar Sesión  <img class="img-profile rounded-circle" src="img/undraw_profile.svg" width="20px"></a>
+  <a href="javascript:void(0)" class="closebtn text-dark" onclick="closeNav()"><img src="iconos/eliminar.png" alt="equis" class="icono"></a>
+  <a class="text-dark" href="index.php"><h3>Inicio</h3></a>
+  <a class="text-dark" href="shopping-cart/index.php"><h3>Calculadora de presupuestos</h3> </a>
+  <a class="text-dark" href="productos.php"><h3>Productos ></h3></a>
+  <a class="text-dark" href="#"><h3>Ordenes ></h3></a>
+  <a class="text-dark" href="#"><h3>Categorias ></h3></a>
+  <a class="text-dark" href="#"><h3>Reseñas ></h3></a>
+  <a class="text-dark" href="#"><h3>Imagenes ></h3></a>
+  <a class="text-dark" href="#"><h3>Cerrar Sesión  <img class="icono" src="iconos/usuario.png"></h3></a>
         
 </div>
  
@@ -50,7 +50,7 @@ $('.closebtn').click(function(){
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    z-index: 99999; /* Stay on top */
     top: 0;
     opacity: 0.9;
     left: 0;
