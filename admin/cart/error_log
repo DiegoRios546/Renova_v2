@@ -1,0 +1,12 @@
+[15-Aug-2023 14:08:42 America/Mexico_City] PHP Warning:  Undefined global variable $_SESSION in /home2/bravoutd/bravoutd.com/renova/admin/cart/index.php on line 174
+[15-Aug-2023 14:08:42 America/Mexico_City] PHP Warning:  Trying to access array offset on value of type null in /home2/bravoutd/bravoutd.com/renova/admin/cart/index.php on line 174
+[15-Aug-2023 14:08:46 America/Mexico_City] PHP Warning:  Undefined global variable $_SESSION in /home2/bravoutd/bravoutd.com/renova/admin/cart/index.php on line 174
+[15-Aug-2023 14:08:46 America/Mexico_City] PHP Warning:  Trying to access array offset on value of type null in /home2/bravoutd/bravoutd.com/renova/admin/cart/index.php on line 174
+[15-Aug-2023 14:08:49 America/Mexico_City] PHP Warning:  Undefined global variable $_SESSION in /home2/bravoutd/bravoutd.com/renova/admin/cart/index.php on line 174
+[15-Aug-2023 14:08:49 America/Mexico_City] PHP Warning:  Trying to access array offset on value of type null in /home2/bravoutd/bravoutd.com/renova/admin/cart/index.php on line 174
+[15-Aug-2023 14:10:27 America/Mexico_City] PHP Warning:  Undefined global variable $_SESSION in /home2/bravoutd/bravoutd.com/renova/admin/cart/actions.php on line 49
+[15-Aug-2023 14:10:27 America/Mexico_City] PHP Warning:  Trying to access array offset on value of type null in /home2/bravoutd/bravoutd.com/renova/admin/cart/actions.php on line 49
+[15-Aug-2023 14:10:27 America/Mexico_City] PHP Warning:  foreach() argument must be of type array|object, null given in /home2/bravoutd/bravoutd.com/renova/admin/cart/actions.php on line 49
+[15-Aug-2023 14:10:30 America/Mexico_City] PHP Warning:  Undefined global variable $_SESSION in /home2/bravoutd/bravoutd.com/renova/admin/cart/actions.php on line 49
+[15-Aug-2023 14:10:30 America/Mexico_City] PHP Warning:  Trying to access array offset on value of type null in /home2/bravoutd/bravoutd.com/renova/admin/cart/actions.php on line 49
+[15-Aug-2023 14:10:30 America/Mexico_City] PHP Warning:  foreach() argument must be of type array|object, null given in /home2/bravoutd/bravoutd.com/renova/admin/cart/actions.php on line 49

@@ -18,92 +18,114 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="css/estilos.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+	<link href="css/estilo.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body id="page-top">
+<?php 
+include_once("menu.php");
+include_once("top-bar.php");
+?>
 
     <!-- Page Wrapper -->
   <div id="wrapper">
-<?php 
-include_once("menu.php");
-?>
+
     <!-- Content Wrapper -->
   <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
     <div id="content">
-    <?php 
-include_once("top-bar.php");
-?>
+
             <!-- Begin Page Content -->
       <div class="container-fluid text-dark">
                 <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between my-4">
-          <h3 class=" text-dark mx-auto my-3">Bienvenido usuario al panel de administracion del sitio web Renova Depot.</h3>
+          <p class=" text-dark mx-auto my-3">Bienvenido usuario al panel de administracion del sitio web Renova Depot.</p>
         </div>
+
+        <style>
+  .divs{
+    width:70%;
+    height:50%;
+    margin-bottom:150px;
+    margin-top:70px;
+  }
+</style>
+<div class="divs mx-auto">
+                <canvas id="miGrafica"></canvas>
+                </div>
+
+    <script>
+        // Obtener los datos de la base de datos mediante PHP
+        fetch('datos.php')
+            .then(response => response.json())
+            .then(data => {
+                const fechas = data.map(item => item.titulo);
+                const valores = data.map(item => item.total_final);
+
+                // Crear la gráfica de líneas
+                const ctx = document.getElementById('miGrafica').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: fechas,
+                        datasets: [{
+                            label: 'Presupuestos del mes',
+                            data: valores,
+                            borderColor: 'blue',
+                            backgroundColor: 'transparent',
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+            });
+    </script>
+
+
+
         <div class="d-block mx-auto m-auto">
           <div class="row mb-4 mx-auto justify-content-between">
-            <div class="col-lg-8 col-md-10 mb-4">
+            <div class="col-lg-7 col-md-9 mx-auto mb-4">
               <div class="card h-100 shadow">
                 <div class="card-header pb-0 d-flex">
                   <img src="../assets/img/presupuesto_pendiente.png" class="icono m-2" alt="">
-                  <h5 class="my-auto m-1">Presupuestos pendientes</h5>
+                  <h4 class="my-auto m-1">Presupuestos pendientes</h4>
                 </div>
-                <div class="card-body p-3">
+                <div class="card-body mx-auto p-3">
                   <div class="timeline timeline-one-side">
-                    <div class="timeline-block mb-3">
+                    <div class="timeline-block mb-3  mx-auto">
                     <?php
                     include("connection.php");
                     $con = connection();
-
+                    
                     // Consulta para obtener los datos de la orden de compra
-                    $sql = "SELECT * FROM presupuestos WHERE id = 7"; // Cambia el valor de 'id' según la orden que deseas mostrar
+                    $sql = "SELECT * FROM presupuestos where status = 1"; // Cambia el valor de 'id' según la orden que deseas mostrar
 
                     $query = mysqli_query($con, $sql);
 
+                    while ($row = mysqli_fetch_array($query)):
 
+          
                     ?>
-                    <button class="notificacion btn" onclick="openlogin()">
-                      <div class="ctn-noti d-block">
-                      <?php while ($row = mysqli_fetch_array($query)): ?>
-                        <span class="timeline-step">
-                            <i class="material-icons text-success text-gradient"><?php echo $row['titulo'] ?></i>
-                        </span>
-                        <div class="timeline-content">
-                            <h6 class="text-dark text-sm font-weight-bold mb-0">$<?php echo $row['total_final'] ?></h6>
-                            <p class="text-secondary font-weight-bold text-xs mt-1 mb-0"><?php echo $row['fecha_creacion'] ?></p>
-                      </div>
+    
+
+                    <a href="presupuestos.php?id=<?php echo $row['id']; ?>" class="col-12 notificacion border mx-auto m-2 btn text-decoration-none">
+                      <div class="ctn-noti d-block">       
+                            <h4  class="material-icons text-primary text-gradient"><?php echo $row['titulo']; ?></h4>
+                            <p class="material-icons text-secondary text-gradient"><?php echo $row['descripcion']; ?></p>
+                          <div class="timeline-content">
+                              <h4 class="text-dark text-sm font-weight-bold mb-0">$<?php echo $row['total_final']; ?></h4>
+                              <p class="text-secondary font-weight-bold text-xs mt-1 mb-0"><?php echo $row['fecha_creacion']; ?></p>
+                          </div>
                       </div>                                 
-                    </button>
-                    <div class="detalles">
-                      <button class="cerrar">X</button>
-                      <h1>Detalles del presupuesto</h1>
-                        <p>Número de Orden: <?php echo $row['id'] ?></p>
-                        <p>Titulo: <?php echo $row['titulo'] ?></p>
-                        <p>Descripcion: <?php echo $row['descripcion'] ?></p>
-                        <p>Total: <?php echo $row['total_final'] ?></p>
-                        <p>Fecha: <?php echo $row['fecha_creacion'] ?></p>
-                        </div>
+                    </a>
 
                         <?php endwhile; ?>
-                                        <script>
-                        $(document).ready(function() {
-            
-                            $(".detalles").hide();
-                            $(".notificacion").click(function() {
-                              $(".detalles").show();
-                            });
 
-                            $(".cerrar").click(function() {
-                              $(".detalles").hide();
-                              $(".notificacion").show();
-                            });
-                          });
-                    </script>
           
                                     </div>
                             
@@ -133,69 +155,6 @@ include_once("top-bar.php");
                 </div>
            
 
-
-                <div class="row mt-4 mx-auto">
-
-                    <div class="col-lg-6 mt-4 mb-4 mx-auto">
-                        <div class="card shadow text-dark z-index-2 ">
-                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                              <div class="bg-gradient-warning shadow-primary border-radius-lg py-3 pe-1">
-                                 <!-- Card Body -->
-                                 <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-body">
-                              <h6 class="mb-0 ">Website Views</h6>
-                              <p class="text-sm ">Last Campaign Performance</p>
-                              <hr class="dark horizontal">
-                              <div class="d-flex ">
-                                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 mt-4 mb-3 mx-auto">
-                        <div class="card shadow z-index-2 ">
-                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                              <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-body">
-                              <h6 class="mb-0 ">Completed Tasks</h6>
-                              <p class="text-sm ">Last Campaign Performance</p>
-                              <hr class="dark horizontal">
-                              <div class="d-flex ">
-                                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                                <p class="mb-0 text-sm">just updated</p>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
 
 
                     

@@ -1,0 +1,46 @@
+[15-Aug-2023 07:21:31 America/Mexico_City] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home2/bravoutd/bravoutd.com/renova/admin/datos.php:3
+Stack trace:
+#0 /home2/bravoutd/bravoutd.com/renova/admin/datos.php(3): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'renova')
+#1 {main}
+  thrown in /home2/bravoutd/bravoutd.com/renova/admin/datos.php on line 3
+[15-Aug-2023 07:21:37 America/Mexico_City] PHP Warning:  Undefined variable $bd in /home2/bravoutd/bravoutd.com/renova/admin/conexion.php on line 10
+[15-Aug-2023 07:21:37 America/Mexico_City] PHP Fatal error:  Uncaught mysqli_sql_exception: No database selected in /home2/bravoutd/bravoutd.com/renova/admin/presupuestos.php:52
+Stack trace:
+#0 /home2/bravoutd/bravoutd.com/renova/admin/presupuestos.php(52): mysqli->query('SELECT * FROM p...')
+#1 {main}
+  thrown in /home2/bravoutd/bravoutd.com/renova/admin/presupuestos.php on line 52
+[15-Aug-2023 11:32:45 America/Mexico_City] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home2/bravoutd/bravoutd.com/renova/admin/datos.php:3
+Stack trace:
+#0 /home2/bravoutd/bravoutd.com/renova/admin/datos.php(3): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'renova')
+#1 {main}
+  thrown in /home2/bravoutd/bravoutd.com/renova/admin/datos.php on line 3
+[15-Aug-2023 11:38:21 America/Mexico_City] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home2/bravoutd/bravoutd.com/renova/admin/datos.php:3
+Stack trace:
+#0 /home2/bravoutd/bravoutd.com/renova/admin/datos.php(3): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'renova')
+#1 {main}
+  thrown in /home2/bravoutd/bravoutd.com/renova/admin/datos.php on line 3
+[15-Aug-2023 11:41:51 America/Mexico_City] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home2/bravoutd/bravoutd.com/renova/admin/datos.php:3
+Stack trace:
+#0 /home2/bravoutd/bravoutd.com/renova/admin/datos.php(3): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'renova')
+#1 {main}
+  thrown in /home2/bravoutd/bravoutd.com/renova/admin/datos.php on line 3
+[15-Aug-2023 12:21:45 America/Mexico_City] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home2/bravoutd/bravoutd.com/renova/admin/datos.php:3
+Stack trace:
+#0 /home2/bravoutd/bravoutd.com/renova/admin/datos.php(3): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'renova')
+#1 {main}
+  thrown in /home2/bravoutd/bravoutd.com/renova/admin/datos.php on line 3
+[15-Aug-2023 12:26:12 America/Mexico_City] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home2/bravoutd/bravoutd.com/renova/admin/datos.php:3
+Stack trace:
+#0 /home2/bravoutd/bravoutd.com/renova/admin/datos.php(3): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'renova')
+#1 {main}
+  thrown in /home2/bravoutd/bravoutd.com/renova/admin/datos.php on line 3
+[15-Aug-2023 12:32:52 America/Mexico_City] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home2/bravoutd/bravoutd.com/renova/admin/datos.php:3
+Stack trace:
+#0 /home2/bravoutd/bravoutd.com/renova/admin/datos.php(3): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'renova')
+#1 {main}
+  thrown in /home2/bravoutd/bravoutd.com/renova/admin/datos.php on line 3
+[15-Aug-2023 12:36:11 America/Mexico_City] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home2/bravoutd/bravoutd.com/renova/admin/datos.php:3
+Stack trace:
+#0 /home2/bravoutd/bravoutd.com/renova/admin/datos.php(3): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'renova')
+#1 {main}
+  thrown in /home2/bravoutd/bravoutd.com/renova/admin/datos.php on line 3

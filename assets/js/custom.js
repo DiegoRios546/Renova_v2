@@ -1,3 +1,73 @@
+    // Obtener la referencia al elemento de la ventana modal
+    var login = document.getElementById("modal_login");
+
+    // Obtener el elemento para cerrar la ventana modal
+    var closeBtn = document.getElementsByClassName("close")[0];
+
+    // Función para abrir la ventana modal
+    function openlogin() {
+      login.style.display = "block";
+    }
+
+
+    // Función para cerrar la ventana modal
+    function closeModal() {
+      login.style.display = "none";
+
+    }
+
+    // Cerrar la ventana modal al hacer clic fuera del contenido
+    window.onclick = function(event) {
+      if (event.target == login) {
+        login.style.display = "none";
+      }
+    };
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const slider = document.querySelector('.slider');
+      const prevButton = document.querySelector('.prev-button');
+      const nextButton = document.querySelector('.next-button');
+  
+      let slideIndex = 0;
+  
+      showSlides(slideIndex);
+  
+      prevButton.addEventListener('click', () => {
+          showSlides(slideIndex -= 1);
+      });
+  
+      nextButton.addEventListener('click', () => {
+          showSlides(slideIndex += 1);
+      });
+  
+      function showSlides(index) {
+          const slides = document.querySelectorAll('.slide');
+  
+          if (index < 0) {
+              slideIndex = slides.length - 1;
+          } else if (index >= slides.length) {
+              slideIndex = 0;
+          }
+  
+          slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+      }
+  
+      // Auto slide change
+      setInterval(() => {
+          showSlides(slideIndex += 1);
+      }, 10000); // Cambia de slide cada 5 segundos
+  });
+
+
+
+
+
+
+
+
+
 function toggleDiv() {
     var div = document.getElementById("myDiv");
     if (div.style.display === "none") {

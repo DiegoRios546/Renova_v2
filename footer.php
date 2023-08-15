@@ -17,7 +17,7 @@
                 <ul class="list-unstyled text-light footer-link-list">
                     <li>
                     <span><img src="assets/iconos/telefono.png" class="icono m-1" alt="icono-telefono"></span>
-                        <a class="text-decoration-none text-light" href="tel:6181234567">+52 6181234567</a>
+                        <a class="text-decoration-none text-light" href="tel:6181461515">+52 618 146 1515</a>
                     </li>
                     <li>
                     <span><img src="assets/iconos/correo.png" class="icono m-1" alt="icono-correo"></span>
@@ -82,7 +82,7 @@
 
             <!-- Seccion contactanos -->
             <div class="col-md-4 pt-2">
-                <h2 class="h2 text-light pt-1 border-light">Siguenos</h2>
+                <h2 class="h2 text-light pt-1 border-light">Redes Sociales</h2>
                 <ul class="list-unstyled text-light footer-link-list">
                     <li class="list-block-item ">
                         <a class="text-light text-decoration-none" target="_blank" href="https://www.facebook.com/profile.php?id=100066719941248">

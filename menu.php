@@ -6,7 +6,7 @@
         <a class="" href="index.php">
           <img src="assets/img/logo2.png" alt="logo" class="logo">
         </a>
-        <a href="" class="d-flex text-decoration-none text-dark">
+        <a href="index.php" class="d-flex text-decoration-none text-dark">
         <span><img src="assets/iconos/mapa.png" class="icono m-2 my-auto" alt="icono-mapa"></span>
           <h6 class="m-0" >
           Oficina: Paseo de las Parras #229 <br>
@@ -40,8 +40,7 @@
     
 
     <?php 
-    session_start();
-
+  
     if (isset($_SESSION)){
       session_destroy();
     }
@@ -50,15 +49,19 @@
        //Crear conexion
       //conexion
     
+
+
+
     if ($_SERVER["REQUEST_METHOD"]=="POST"){
     
        $us=$_POST['nombre'];
        $ps=$_POST['pass'];
-    //conexion
-include("admin/connection.php");
-$con = connection();
+
+           //conexion
+           include_once("admin/connection.php");
     
-    
+   $con = connection();
+
        //consulta a la base de datos
        $consulta="SELECT * from usuarios WHERE usuario='$us' AND password='$ps'";
        $resultado=$con->query($consulta);

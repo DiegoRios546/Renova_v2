@@ -24,8 +24,9 @@ $query = mysqli_query($con, $sql);
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="css/estilos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/estilo.css" rel="stylesheet">
     
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -33,45 +34,17 @@ $query = mysqli_query($con, $sql);
 
  
 
-<!-- barra de menu -->
-<nav class="navbar shadow menudo d-block p-0 mx-auto" style="background-color:#454546;">
-<div class="container mx-auto d-flex p-0 mb-2">
-    <div class="d-flex justify-content-center align-items-center">
-    <a href="#" class="p-1" onclick="openNav()">
-    <svg width="30" height="30" id="icoOpen">
-        <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
-        <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
-        <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
-    </svg>
-  </a>
-        <a class="d-flex text-decoration-none my-auto mx-auto" href="../index.php">
-          <img src="iconos/logo2.png" alt="logo" class="logo m-2">
-          <h2 class="text-white my-auto mx-2 p-2">Admin - Renova Depot</h2>
-        </a>
-    </div>
 
-    <div class="d-sm-block d-none">
-    <div class=" d-flex mx-auto my-auto">
-      <button class=" btn"><a href="../index.php" class="text-white text-decoration-none">Inicio</a></button>
-      <button class="text-white btn">Mis presupuestos</button>
-      <button class="d-flex text-white btn">
-        Cerrar sesion
-        <span><img src="iconos/usuario.png" class="icono m-2 my-auto" alt="icono-usuario"></span>
-      </button>
-    </div>
-    </div>
-  </div>
-</nav>
+    <?php 
+include_once("menu.php");
+include_once("top-bar.php")
+?>
     
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <?php 
-        include_once("menu.php");
-        ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -125,13 +98,15 @@ $query = mysqli_query($con, $sql);
                         </div>
                         
                         <div class="card-body contenedor" id="ctn-form">
-                            <form action="insert.php" method="POST" class="formulario mx-auto" enctype="multipart/form-data">
+                            <form action="insert.php?action=producto" method="POST" class="formulario mx-auto" enctype="multipart/form-data">
                             <h1>Crear nuevo servicio</h1>
                                 <input class="input" type="text" name="nombre" placeholder="Nombre">
                                 <input class="input" type="text" name="descripcion" placeholder="Descripcion">
                                 <input class="input" type="number" name="precio" placeholder="Precio">
-                  
+                                <input class="input" type="text" name="categoria" placeholder="Categoria">
                                 <input class="input" type="text" name="estado" placeholder="Estado">
+                                <label for="foto">Foto:</label>
+                                <input type="file" name="foto" accept="image/*" required>
                                 <input class="input" type="submit" value="Agregar">
                             </form>
                         </div>
@@ -145,12 +120,12 @@ $query = mysqli_query($con, $sql);
                         
                         <th >
                             <div class="btns-action">
-                            <a href="modificar.php?id=<?= $row['id'] ?>" class="mx-1 my-1 edit text-decoration-none btn"><i class="fa fa-lg fa-pen"></i> Editar</a>
-                            <a href="delete.php?id=<?= $row['id'] ?>" class="mx-1 my-1 btn delete text-decoration-none" ><i class="fa fa-lg fa-trash"></i> Eliminar</a>
+                            <a href="modificar.php?action=producto&id=<?= $row['id'] ?>" class="mx-1 my-1 edit text-decoration-none btn"><i class="fa fa-lg fa-pen"></i> Editar</a>
+                            <a href="delete.php?action=producto&id=<?= $row['id'] ?>" class="mx-1 my-1 btn delete text-decoration-none" ><i class="fa fa-lg fa-trash"></i> Eliminar</a>
                             </div>
                             <h3 class="m-2 mt-5"><?= $row['name'] ?></h3>
 
-                            <img class="img-servicio-movil " src="data:image/png; base64, <?php echo base64_encode( $row['img']); ?>" alt="..." />
+                            <img class="img-servicio-movil " src="<?= $row['foto_ruta'] ?>" alt="..." />
                             <h3 class="m-2"><?= $row['description'] ?></h3>
                             <h3 class="m-2 mb-5">$<?= $row['price'] ?></h3>
                         </th>
@@ -186,12 +161,12 @@ $query = mysqli_query($con, $sql);
                                     while ($row = mysqli_fetch_array($query)): ?>
                                         <div>
                                         <tr >
-                                            <th><p class=""><?= $row['id'] ?></p></th>
-                                            <th><p class=""><?= $row['name'] ?></p></th>
-                                            <th class=""><?= $row['description'] ?></th>
-                                            <th class="">$ <?= $row['price'] ?></th>
-                                            <th><img class="img-servicio" src="data:image/png; base64, <?php echo base64_encode( $row['img']); ?>" alt="..." /></th>
-                                            <th ><?php
+                                            <td><p class=""><?= $row['id'] ?></p></td>
+                                            <td><p class=""><?= $row['name'] ?></p></td>
+                                            <td class=""><?= $row['description'] ?></td>
+                                            <td class="">$ <?= $row['price'] ?></td>
+                                            <td><img class="img-servicio" src="<?php echo $row['foto_ruta']; ?>" alt="..." /></td>
+                                            <td ><?php
                                             if ($row['status'] == '1') {
                                             
                                                 echo "ACTIVO";
@@ -202,14 +177,16 @@ $query = mysqli_query($con, $sql);
                                                             
                                                     ?>
                                         
-                                            </th>
-                                            <th><?= $row['categoria'] ?></th>
-                                        
-                                            <td class="botones">
-                                                <a href="modificar.php?id=<?= $row['id'] ?>" class="mx-auto my-1 btn edit text-decoration-none">Editar</a>
-                                                
-                                                <button data-id="<?= $row['id'] ?>" id="delete" class="mx-auto my-1 btn delete text-decoration-none" >Eliminar</button>
+                                            </td>
+                                            <td><?= $row['categoria'] ?></td>
 
+                                            <td>
+                                                <a href="modificar.php?action=producto&id=<?= $row['id'] ?>" class="mx-auto my-1 btn edit text-decoration-none">Editar</a>
+                                                <br>
+                                                <button data-id="<?= $row['id'] ?>" id="delete" class="mx-auto my-1 btn delete text-decoration-none" >Eliminar</button>
+                                                <br>
+                                                <a href="fotos.php?action=producto&id=<?= $row['id'] ?>" class="mx-auto my-1 btn btn-secondary text-decoration-none">Foto</a>
+                                            
 
                                             </td>
                                         </tr>
@@ -269,7 +246,7 @@ include_once("footer.php");
       }).then((result) => {
         if (result.isConfirmed) {
           // Redirigir a eliminar_producto.php con el ID del producto
-          window.location.href = `delete.php?id=${id}`;
+          window.location.href = `delete.php?action=producto&id=${id}`;
         }
       });
         });

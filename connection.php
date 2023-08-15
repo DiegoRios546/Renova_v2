@@ -9,10 +9,10 @@ function connection() {
    //$bd = "bravoutd_renova";
 
 
-   $host = "localhost";
-   $user = "root";
-   $clave = "";
-   $bds = "renova";
+   $host = "renova.bravoutd.com";
+   $user = "bravoutd_urenova";
+   $clave = "1Mochila.";
+   $bds = "bravoutd_renova";
     // Crear la conexión
     $con = new mysqli($host, $user, $clave, $bds);
 
@@ -22,5 +22,7 @@ function connection() {
     }
 
     return $con;
+
+    $con = connection();
 }
 ?>

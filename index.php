@@ -14,11 +14,19 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <!-- al recargar regresa a la posicion donde estabas -->
 <body onload="restoreScrollPosition()" onbeforeunload="saveScrollPosition()">
+
+<!-- barra de menu -->
+<!-- barra de menu -->
 <?php
-   include_once("menu.php");
+include_once("menu.php");
+
+
+include_once("admin/connection.php");
+$con = connection();
 ?>
 <!-- liston debajo del menu -->
   <div id="#inicio" class="mx-auto py-1 bg-red text-center">
@@ -84,13 +92,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
+<style>
+.slide {
+    flex: 0 0 100%;
+    height: auto;
+    width: 100%;
+}
+
+.slider-container {
+    width: 100%;
+    height:500px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.slide img {
+    width: 100%;
+    margin-right:auto;
+    margin-left:auto;
+    height: 500px;
+}
+</style>
 <!-- carrusel -->
-<div class="slider-container mx-auto px-5">
+<div class="slider-container mx-auto px-auto">
         <div class="slider ">
-            <div class="slide"><img src="assets/img/fachada.png" class="mx-auto px-5" alt="fachada" widht="100%"></div>
-            <div class="slide"><img src="assets/img/cabaña1-c.png" class="mx-auto px-5" alt="cabañas" widht="100%"></div>
-            <div class="slide"><img src="assets/img/cabaña2-c.png" class="mx-auto px-5" alt="cabañas" widht="100%"></div>
-            <div class="slide"><img src="assets/img/diseño-arquitectonico.png" class="mx-auto px-5" alt="fachada" widht="100%"></div>
+            <div class="slide"><img src="assets/img/fachada.png" class="mx-auto px-auto" alt="fachada"></div>
+            <div class="slide"><img src="assets/img/cabaña1-c.png" class="mx-auto px-auto" alt="cabañas"></div>
+            <div class="slide"><img src="assets/img/cabaña2-c.png" class="mx-auto px-auto" alt="cabañas"></div>
+            <div class="slide"><img src="assets/img/diseño-arquitectonico.png" class="mx-auto px-auto" alt="fachada"></div>
         </div>
         <button class="prev-button">Anterior</button>
         <button class="next-button">Siguiente</button>
@@ -177,10 +207,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <div id="item" class="row  m-1" >
             <!-- obtener los valores de la consulta -->
             <?php
+    
 
-    //conexion
-    include("admin/connection.php");
-    $con = connection();
 // Obtener la página actual
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $items_per_page = 4; // Número de elementos por página
@@ -202,21 +230,45 @@ $items_query = "SELECT * FROM mis_productos LIMIT $start_index, $items_per_page"
 $items_result = $con->query($items_query);
 
 
- while ($row = $items_result->fetch_assoc()): ?>
+ while ($row = $items_result->fetch_assoc()): 
+ 
+ 
+    $descripcionLarga = $row['description'];
 
+    // Calcula la mitad de la longitud del texto
+    $mitadLongitud = strlen($descripcionLarga) / 2;
+    
+    // Recorta el texto para mostrar solo la mitad
+    $descripcionCorta = substr($descripcionLarga, 0, $mitadLongitud);
+ 
+ 
+ 
+ ?>
+
+<style>
+  .img-producto{
+  height: 300px;
+  width: auto;
+  }
+
+  .productos{
+    width: 250px;
+    height: auto;
+  }
+</style>
             <!-- contenedor de un producto -->
             <div class="productos mx-auto row">
             <div class=" mx-auto row " >
                 <div class="card mb-4 product-wap rounded-0 ">
                     <!-- contenedor de imagen -->
                     <div class="card rounded-0 mx-auto">
-                        <a href="shop-single.php" target="_self">
-                        <img class="img-pro img-fluid" src="data:image/png; base64, <?php echo base64_encode( $row['img']); ?>" alt="..." />
+                        <a href="shop-single.php?id=<?php echo $row['id'] ?>" target="_self">
+                            <img class="img-producto img-fluid" src="admin/<?php echo $row['foto_ruta']; ?>" alt="..." />
                         </a>
                         <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-end justify-content-end">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><img src="assets/iconos/ojo.png" class="icono m-2 my-auto" alt="icono-ojo"></a></li>
-                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><img src="assets/iconos/carrito-blanco.png" class="icono m-2 my-auto" alt="icono-carrito-blanco"></a></li>
+                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.php?id=<?php echo $row['id'] ?>"><img src="assets/iconos/ojo.png" class="icono m-2 my-auto" alt="icono-ojo"></a></li>
+                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.php?id=<?php echo $row['id'] ?>"><img src="assets/iconos/carrito-blanco.png" class="icono m-2 my-auto" alt="icono-carrito-blanco"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -229,7 +281,7 @@ $items_result = $con->query($items_query);
                                 <h3 class="fw-bolder"><?php echo $row['name'] ?></h3>
                             </li>
                             <li class="m-auto">
-                                <h5 class=""><?php echo $row['description']; ?></h5>
+                                <h5 class=""><?php echo $descripcionCorta ?></h5>
                             </li>
                             <li class="m-auto">
                                 <!-- estrellas -->
@@ -247,8 +299,8 @@ $items_result = $con->query($items_query);
                             <li class="m-auto"><h1 class="text-success1">$<?php echo $row['price'] ?></h1></li>
                             <li class="m-auto d-flex mx-auto" >
   
-                                <a class="btn p-2 btn-success1 m-auto interest text-white" href="img_detalle.php?id=<?php echo $row['id'];?>">
-                                !Me interesa!
+                                <a class="btn p-2 btn-success1 m-auto interest text-white" href="shop-single.php?id=<?php echo $row['id'];?>">
+                                !Mas informacion!
                                 </a>
                             </li>
                         </ul>
@@ -308,7 +360,16 @@ $result = $con->query($sql);
 
 if ($result->num_rows > 0) {
     // Presentar los datos en una lista
-    while ($row = $result->fetch_assoc()) { ?>
+    while ($row = $result->fetch_assoc()) { 
+        
+        $descripcionLarga = $row['description'];
+
+        // Calcula la mitad de la longitud del texto
+        $mitadLongitud = strlen($descripcionLarga) / 2;
+        
+        // Recorta el texto para mostrar solo la mitad
+        $descripcionCorta = substr($descripcionLarga, 0, $mitadLongitud);
+        ?>
 
             <!-- contenedor de un producto -->
             <div class="productos mx-5 row">
@@ -316,13 +377,13 @@ if ($result->num_rows > 0) {
                 <div class="card mb-4 product-wap rounded-0 ">
                     <!-- contenedor de imagen -->
                     <div class="card rounded-0 mx-auto">
-                        <a href="shop-single.php" target="_self">
-                        <img class="img-pro img-fluid" src="data:image/png; base64, <?php echo base64_encode( $row['img']); ?>" alt="..." />
+                        <a href="shop-single.php?id=<?php echo $row['id']; ?>" target="_self">
+                        <img class="img-producto img-fluid" src="admin/<?php echo $row['foto_ruta']; ?>" alt="..." />
                         </a>
                         <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-end justify-content-end">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><img src="assets/iconos/ojo.png" class="icono m-2 my-auto" alt="icono-ojo"></a></li>
-                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><img src="assets/iconos/carrito-blanco.png" class="icono m-2 my-auto" alt="icono-carrito-blanco"></a></li>
+                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.php?id=<?php echo $row['id']; ?>" target="_self"><img src="assets/iconos/ojo.png" class="icono m-2 my-auto" alt="icono-ojo"></a></li>
+                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.php?id=<?php echo $row['id']; ?>" target="_self"><img src="assets/iconos/carrito-blanco.png" class="icono m-2 my-auto" alt="icono-carrito-blanco"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -332,10 +393,10 @@ if ($result->num_rows > 0) {
                     <ul class="list-unstyled row my-1" style="height:100%;">
                             <li class="m-auto">
                                 <!-- nombre del producto -->
-                                <h3 class="fw-bolder"><?php echo $row['name'] ?></h3>
+                                <h3 class="fw-bolder"><?php echo $row['name']; ?></h3>
                             </li>
                             <li class="m-auto">
-                                <h5 class=""><?php echo $row['description']; ?></h5>
+                                <h5 class=""><?php echo $descripcionCorta; ?></h5>
                             </li>
                             <li class="m-auto">
                                 <!-- estrellas -->
@@ -348,12 +409,12 @@ if ($result->num_rows > 0) {
                                     <p class=" m-2">4.8, (24) reseñas</p>
                                 </div>
                             </li>
-                            <li class="m-auto"><h4>Id:<?php echo $row['id'] ?></h4></li>
+                            <li class="m-auto"><h4>Id:<?php echo $row['id']; ?></h4></li>
                             
-                            <li class="m-auto"><h1 class="text-success1">$<?php echo $row['price'] ?></h1></li>
+                            <li class="m-auto"><h1 class="text-success1">$<?php echo $row['price']; ?></h1></li>
                             <li class="m-auto d-flex mx-auto" >
   
-                                <a class="btn p-2 btn-success1 m-auto interest text-white" href="img_detalle.php?id=<?php echo $row['id'];?>">
+                                <a class="btn p-2 btn-success1 m-auto interest text-white" href="shop-single.php?id=<?php echo $row['id']; ?>" target="_self">
                                 !Me interesa!
                                 </a>
                             </li>
@@ -407,7 +468,16 @@ $result = $con->query($sql);
 
 if ($result->num_rows > 0) {
     // Presentar los datos en una lista
-    while ($row = $result->fetch_assoc()) { ?>
+    while ($row = $result->fetch_assoc()) { 
+        
+        $descripcionLarga = $row['description'];
+
+        // Calcula la mitad de la longitud del texto
+        $mitadLongitud = strlen($descripcionLarga) / 2;
+        
+        // Recorta el texto para mostrar solo la mitad
+        $descripcionCorta = substr($descripcionLarga, 0, $mitadLongitud);
+        ?>
 
             <!-- contenedor de un producto -->
             <div class="productos mx-5 row">
@@ -415,13 +485,13 @@ if ($result->num_rows > 0) {
                 <div class="card mb-4 product-wap rounded-0 ">
                     <!-- contenedor de imagen -->
                     <div class="card rounded-0 mx-auto">
-                        <a href="shop-single.php" target="_self">
-                        <img class="img-pro img-fluid" src="data:image/png; base64, <?php echo base64_encode( $row['img']); ?>" alt="..." />
+                        <a href="shop-single.php?id=<?php echo $row['id']; ?>" target="_self">
+                        <img class="img-producto img-fluid" src="admin/<?php echo $row['foto_ruta']; ?>" alt="..." />
                         </a>
                         <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-end justify-content-end">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><img src="assets/iconos/ojo.png" class="icono m-2 my-auto" alt="icono-ojo"></a></li>
-                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><img src="assets/iconos/carrito-blanco.png" class="icono m-2 my-auto" alt="icono-carrito-blanco"></a></li>
+                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.php?id=<?php echo $row['id']; ?>" target="_self"><img src="assets/iconos/ojo.png" class="icono m-2 my-auto" alt="icono-ojo"></a></li>
+                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.php?id=<?php echo $row['id']; ?>" target="_self"><img src="assets/iconos/carrito-blanco.png" class="icono m-2 my-auto" alt="icono-carrito-blanco"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -431,10 +501,10 @@ if ($result->num_rows > 0) {
                     <ul class="list-unstyled row my-1" style="height:100%;">
                             <li class="m-auto">
                                 <!-- nombre del producto -->
-                                <h3 class="fw-bolder"><?php echo $row['name'] ?></h3>
+                                <h3 class="fw-bolder"><?php echo $row['name']; ?></h3>
                             </li>
                             <li class="m-auto">
-                                <h5 class=""><?php echo $row['description']; ?></h5>
+                                <h5 class=""><?php echo $descripcionCorta; ?></h5>
                             </li>
                             <li class="m-auto">
                                 <!-- estrellas -->
@@ -447,12 +517,12 @@ if ($result->num_rows > 0) {
                                     <p class=" m-2">4.8, (24) reseñas</p>
                                 </div>
                             </li>
-                            <li class="m-auto"><h4>Id:<?php echo $row['id'] ?></h4></li>
+                            <li class="m-auto"><h4>Id:<?php echo $row['id']; ?></h4></li>
                             
-                            <li class="m-auto"><h1 class="text-success1">$<?php echo $row['price'] ?></h1></li>
+                            <li class="m-auto"><h1 class="text-success1">$<?php echo $row['price']; ?></h1></li>
                             <li class="m-auto d-flex mx-auto" >
   
-                                <a class="btn p-2 btn-success1 m-auto interest text-white" href="img_detalle.php?id=<?php echo $row['id'];?>">
+                                <a class="btn p-2 btn-success1 m-auto interest text-white" href="shop-single.php?id=<?php echo $row['id']; ?>" target="_self">
                                 !Me interesa!
                                 </a>
                             </li>
@@ -500,26 +570,23 @@ if ($result->num_rows > 0) {
             <!-- obtener los valores de la consulta -->
             <?php
 
-// Obtener la página actual
-$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-$items_per_page = 4; // Número de elementos por página
+// Consulta SQL
+$sql = "SELECT * FROM mis_productos where id_categoria = 7";
+$result = $con->query($sql);
 
-// Consulta para obtener el total de elementos
-$total_items_query = "SELECT COUNT(*) AS total FROM mis_productos WHERE id_categoria=7";
-$total_items_result = $con->query($total_items_query);
-$total_items = $total_items_result->fetch_assoc()['total'];
 
-// Calcular el número total de páginas
-$total_pages = ceil($total_items / $items_per_page);
+if ($result->num_rows > 0) {
+    // Presentar los datos en una lista
+    while ($row = $result->fetch_assoc()) { 
+        
+        $descripcionLarga = $row['description'];
 
-// Calcular el índice de inicio y fin de los elementos en la página actual
-$start_index = ($current_page - 1) * $items_per_page;
-$end_index = $start_index + $items_per_page;
-
-// Consulta para obtener los elementos de la página actual
-$items_query = "SELECT * FROM mis_productos LIMIT $start_index, $items_per_page ";
-$items_result = $con->query($items_query);
- while ($row = $items_result->fetch_assoc()): ?>
+        // Calcula la mitad de la longitud del texto
+        $mitadLongitud = strlen($descripcionLarga) / 2;
+        
+        // Recorta el texto para mostrar solo la mitad
+        $descripcionCorta = substr($descripcionLarga, 0, $mitadLongitud);
+        ?>
 
             <!-- contenedor de un producto -->
             <div class="productos mx-auto row">
@@ -527,13 +594,13 @@ $items_result = $con->query($items_query);
                 <div class="card mb-4 product-wap rounded-0 ">
                     <!-- contenedor de imagen -->
                     <div class="card rounded-0 mx-auto">
-                        <a href="shop-single.php" target="_self">
-                        <img class="img-pro img-fluid" src="data:image/png; base64, <?php echo base64_encode( $row['img']); ?>" alt="..." />
+                        <a href="shop-single.php?id=<?php echo $row['id']; ?>" target="_self">
+                        <img class="img-producto img-fluid" src="admin/<?php echo $row['foto_ruta']; ?>" alt="..." />
                         </a>
                         <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-end justify-content-end">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><img src="assets/iconos/ojo.png" class="icono m-2 my-auto" alt="icono-ojo"></a></li>
-                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.html"><img src="assets/iconos/carrito-blanco.png" class="icono m-2 my-auto" alt="icono-carrito-blanco"></a></li>
+                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.php?id=<?php echo $row['id']; ?>" target="_self"><img src="assets/iconos/ojo.png" class="icono m-2 my-auto" alt="icono-ojo"></a></li>
+                                <li><a class="btn btn-success1 text-white mt-2" href="shop-single.php?id=<?php echo $row['id']; ?>" target="_self"><img src="assets/iconos/carrito-blanco.png" class="icono m-2 my-auto" alt="icono-carrito-blanco"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -543,10 +610,10 @@ $items_result = $con->query($items_query);
                     <ul class="list-unstyled row my-1" style="height:100%;">
                             <li class="m-auto">
                                 <!-- nombre del producto -->
-                                <h3 class="fw-bolder"><?php echo $row['name'] ?></h3>
+                                <h3 class="fw-bolder"><?php echo $row['name']; ?></h3>
                             </li>
                             <li class="m-auto">
-                                <h5 class=""><?php echo $row['description']; ?></h5>
+                                <h5 class=""><?php echo $descripcionCorta; ?></h5>
                             </li>
                             <li class="m-auto">
                                 <!-- estrellas -->
@@ -559,12 +626,12 @@ $items_result = $con->query($items_query);
                                     <p class=" m-2">4.8, (24) reseñas</p>
                                 </div>
                             </li>
-                            <li class="m-auto"><h4>Id:<?php echo $row['id'] ?></h4></li>
+                            <li class="m-auto"><h4>Id:<?php echo $row['id']; ?></h4></li>
                             
-                            <li class="m-auto"><h1 class="text-success1">$<?php echo $row['price'] ?></h1></li>
+                            <li class="m-auto"><h1 class="text-success1">$<?php echo $row['price']; ?></h1></li>
                             <li class="m-auto d-flex mx-auto" >
   
-                                <a class="btn p-2 btn-success1 m-auto interest text-white" href="img_detalle.php?id=<?php echo $row['id'];?>">
+                                <a class="btn p-2 btn-success1 m-auto interest text-white" href="shop-single.php?id=<?php echo $row['id']; ?>" target="_self">
                                 !Me interesa!
                                 </a>
                             </li>
@@ -575,24 +642,17 @@ $items_result = $con->query($items_query);
             </div>
             </div>
         <!-- Fin contenedor de un producto -->
-             
-         <!-- Fin de la consulta -->
-         <?php endwhile; ?>
-         <div class="pagination">
-<!-- Botón de página anterior -->
-<?php if ($current_page > 1): ?>
-  <a href="?page=<?php echo ($current_page - 1); ?>" class="p-2 mx-3 pagination-button"><img src="assets/iconos/flecha-izquierda.png" class="icono m-auto" alt="icono-flecha-izquierda"></i></a>
-<?php endif; ?>
-    <!-- Botones de páginas numeradas -->
-    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-  <button onclick="location.href='?page=<?php echo $i; ?>'" class="px-3 py-2 pagination-button <?php echo ($i == $current_page) ? 'active' : ''; ?>">
-    <?php echo $i; ?>
-  </button>
-<?php endfor; ?>
-            <!-- Botón de página siguiente -->
-            <?php if ($current_page < $total_pages): ?>
-  <a href="?page=<?php echo ($current_page + 1); ?>" class="p-2 mx-3  pagination-button"><img src="assets/iconos/flecha-derecha.png" class="icono m-auto" alt="icono-flecha-derecha"></a>
-<?php endif; ?>
+        <?php
+       
+          
+    }
+} else {
+    echo "No se encontraron resultados.";
+}
+
+// Cerrar conexión
+
+  ?> 
 </div>
 
 </div>
@@ -618,10 +678,13 @@ $items_result = $con->query($items_query);
 
 
     <!-- Start Script -->
-    <script src="assets/js/jquery-1.11.0.min.js"></script>
+            <!-- fin del menu de moviles -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+
     <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/templatemo.js"></script>
     <script src="assets/js/custom.js"></script>
     <!-- End Script -->
 </body>

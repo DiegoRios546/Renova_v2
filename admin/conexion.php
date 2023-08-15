@@ -1,12 +1,12 @@
 <?php
    //variables de conexion a la base de datos
 
-   $host = "localhost";
-   $user = "root";
-   $clave = "";
-   $bd = "renova";
+   $host = "renova.bravoutd.com";
+   $user = "bravoutd_urenova";
+   $clave = "1Mochila.";
+   $bd = "bravoutd_renova";
 
    //Crear conexion
-   $conexion = new mysqli($host, $user, $clave, $bd);
+   $con = new mysqli($host, $user, $clave, $bd);
 
     ?>

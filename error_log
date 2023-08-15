@@ -1,0 +1,6 @@
+[15-Aug-2023 12:33:05 America/Mexico_City] PHP Warning:  include_once(admin/conection.php): Failed to open stream: No such file or directory in /home2/bravoutd/bravoutd.com/renova/menu.php on line 61
+[15-Aug-2023 12:33:05 America/Mexico_City] PHP Warning:  include_once(): Failed opening 'admin/conection.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/bravoutd/bravoutd.com/renova/menu.php on line 61
+[15-Aug-2023 12:33:05 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function connection() in /home2/bravoutd/bravoutd.com/renova/menu.php:63
+Stack trace:
+#0 {main}
+  thrown in /home2/bravoutd/bravoutd.com/renova/menu.php on line 63

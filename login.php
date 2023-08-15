@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
 
   <div class="login-container">
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="login.php" method="post">
       <div class="input-wrapper">
         <input type="email" class="input" id="email" placeholder="Correo electrónico" name="nombre" required />
         <i class="fa-solid fa-user fa-sm icon-usr" style="color: #fd5100;"></i>
